@@ -11,14 +11,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/admin_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class='container'>
         <div class='nav_wrapper'>
             <nav>
+                <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <img class="bi me-2" width="50" height="50" src="https://sdovalenzuelacity.deped.gov.ph/wp-content/uploads/2021/04/New-DO-Logo.png" alt="logo">
+                    <span class="fs-4">Inventory System</span>
+                    </a>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                    <li>
+                        <a id="test2" class="nav-link link-dark active" href="javascript:window.location.reload(true)">
+                        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-chart-simple"></i></span>
+                        Dashboard
+                        </a>
+                    </li>
+                    <li id='schoolBtn'>
+                        <a id="test" href="#" class="nav-link link-dark">
+                        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-school"></i></span>
+                        School
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-phone"></i></span>
+                        Contact
+                        </a>
+                    </li>
+                    </ul>
+                </div>
                 <ul>
                     <li><a href="javascript:window.location.reload(true)">Dashboard</a></li>
                     <li id='schoolBtn'>Schoool</li>
@@ -71,6 +98,8 @@
         $(document).ready(function(){
             $('#schoolBtn').click(function(){
                 $('#dashBoardBody').load("table.php");
+                $('#test').addClass('active');
+                $('#test2').removeClass('active');
             })
 
             $("#addSchoolBtn").click(function(){
@@ -113,8 +142,8 @@
             })
         })
     </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

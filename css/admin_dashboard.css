@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+ul{
+    list-style: none;
+}
 .nav_wrapper{
     border: 1px solid red;
     width: fit-content;
