@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class='container'>
+    <div class='container m-0 p-0 d-flex'>
         <div class='nav_wrapper'>
             <nav>
-                <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+                <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height:100vh">
                     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <img class="bi me-2" width="50" height="50" src="https://sdovalenzuelacity.deped.gov.ph/wp-content/uploads/2021/04/New-DO-Logo.png" alt="logo">
                     <span class="fs-4">Inventory System</span>
@@ -46,10 +46,10 @@
                     </li>
                     </ul>
                 </div>
-                <ul>
+                <!-- <ul>
                     <li><a href="javascript:window.location.reload(true)">Dashboard</a></li>
                     <li id='schoolBtn'>Schoool</li>
-                </ul>
+                </ul> -->
             </nav>
         </div>
     
@@ -190,6 +190,6 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <?php include 'footer.php' ?>
 </body>
 </html>
