@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.nav_wrapper{
+    border: 1px solid red;
+    width: fit-content;
+    height: 100vh;
+}
+.nav_wrapper li{
+    border: 1px solid;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
