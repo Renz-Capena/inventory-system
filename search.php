@@ -26,8 +26,9 @@
             <td><?php echo $fetch['principal'] ?></td>
             <td><?php echo $fetch['contact'] ?></td>
             <td>
-                <button>EDIT</button>
-                <button>DELETE</button>
+                <button id='editBtn' value='<?php echo $fetch['id'] ?>'>EDIT</button>
+                <button id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
+                <button id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
             </td>
         </tr>
     <?php }while($fetch = $list->fetch_assoc()) ?>

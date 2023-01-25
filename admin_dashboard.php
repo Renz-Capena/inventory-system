@@ -96,12 +96,14 @@
 
     <script>
         $(document).ready(function(){
+            // NAV
             $('#schoolBtn').click(function(){
                 $('#dashBoardBody').load("table.php");
                 $('#test').addClass('active');
                 $('#test2').removeClass('active');
             })
 
+            // ADD SCHOOL
             $("#addSchoolBtn").click(function(){
                 const schoolName = $("#inputSchoolName").val();
                 const principal = $("#inputPrincipal").val();
@@ -120,11 +122,17 @@
                     success(){
                         $('#dashBoardBody').load("table.php");
                         // $('#dashBoardBody').html(e);
+
+                        $("#inputSchoolName").val("");
+                        $("#inputPrincipal").val("");
+                        $("#inputAddress").val("");
+                        $("#inputContact").val("");
                     }
                 })
 
             })
             
+            // SEARCH DATA
             $("#dashBoardBody").on('keyup','#searchBar',function(){
                 const searchValue = $(this).val();
 
@@ -138,6 +146,44 @@
                         $('#idForSearchOutput').html(e);
 
                     },
+                })
+            })
+
+            // DELETE SCHOOL
+            $("#dashBoardBody").on('click','#deleteBtn',function(){
+                const id = $(this).val();
+                
+                if(confirm(`Are you sure you want to delete this?`)){
+                    $.ajax({
+                        url:"delete.php",
+                        method:'post',
+                        data:{
+                            id:id
+                        },
+                        success(e){
+                            // $('#dashBoardBody').load("table.php");
+                            // $('#dashBoardBody').html(e);
+                            $('#dashBoardBody').load("table.php");
+
+                        }
+                    })
+                }
+            })
+
+            // VIEW (NOTE DONE)
+            $("#dashBoardBody").on("click","#viewBtn",function(){
+
+                const schoolName = $(this).val().toLowerCase();
+
+                $.ajax({
+                    url: "schoolView.php",
+                    method: "post",
+                    data:{
+                        schoolName : schoolName
+                    },
+                    success(data){
+                        $("#dashBoardBody").html(data);
+                    }
                 })
             })
         })
