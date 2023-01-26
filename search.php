@@ -27,8 +27,8 @@
             <td><?php echo $fetch['contact'] ?></td>
             <td>
                 <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editSchool">EDIT</button>
-                <button id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
-                <button id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
+                <button class="btn btn-danger" id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
+                <button class="btn btn-success" id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
             </td>
         </tr>
     <?php }while($fetch = $list->fetch_assoc()) ?>

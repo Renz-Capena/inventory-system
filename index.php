@@ -9,6 +9,8 @@
         $q = "SELECT * FROM `users` WHERE email='$email' AND pass='$pass'";
         $list = $con->query($q);
         $info = $list->fetch_assoc();
+        
+        // $_SESSION['id'] = $info['id'];
 
         if($list->num_rows){
             $_SESSION['role'] = $info['role'];
