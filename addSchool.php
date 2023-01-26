@@ -8,7 +8,7 @@
 
     echo $schoolName, $principal,$address,$contact;
 
-    $q = "INSERT INTO `schools`(`school_name`, `address`, `principal`, `contact`) VALUES ('$schoolName','$principal','$address','$contact')";
+    $q = "INSERT INTO `schools`(`school_name`, `address`, `principal`, `contact`) VALUES ('$schoolName','$address','$principal','$contact')";
 
     $con->query($q);
 ?>

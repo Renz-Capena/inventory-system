@@ -26,7 +26,7 @@
             <td><?php echo $fetch['principal'] ?></td>
             <td><?php echo $fetch['contact'] ?></td>
             <td>
-                <button id='editBtn' value='<?php echo $fetch['id'] ?>'>EDIT</button>
+                <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editSchool">EDIT</button>
                 <button id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
                 <button id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
             </td>
