@@ -16,19 +16,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSchool">
-  add school
-    </button>
-    <input type="text" id='searchBar' placeholder='search'>
-    <table class='table text-center'>
+    <div class="d-flex align-items-center justify-content-between mb-3 mt-4">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSchool">Add School</button>
+        <!-- <input type="text" id='searchBar' placeholder='Search Data'> -->
+        <div class="d-flex align-items-center gap-2">
+            <i class="fas fa-search fs-5" aria-hidden="true"></i>
+            <input id='searchBar' class="form-control form-control-sm fs-17 py-2" type="text" placeholder='Search Data'
+            aria-label="Search">
+        </div>
+    </div>
+    <table class='table text-center table-striped'>
         <thead>
             <tr>
-                <th>id</th>
-                <th>school name</th>
-                <th>address</th>
-                <th>principal</th>
-                <th>contact num</th>
-                <th>action</th>
+                <th>Id</th>
+                <th>School Name</th>
+                <th>Address</th>
+                <th>Principal</th>
+                <th>Contact No.</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id="idForSearchOutput">
@@ -42,8 +47,8 @@
                         <td><?php echo $fetch['contact'] ?></td>
                         <td>
                             <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editSchool">EDIT</button>
-                            <button id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
-                            <button id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
+                            <button class="btn btn-danger" id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
+                            <button class="btn btn-success" id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
                         </td>
                     </tr>
                 <?php }while($fetch = $list->fetch_assoc()) ?>

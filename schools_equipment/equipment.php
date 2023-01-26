@@ -18,12 +18,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1><?php echo strtoupper($school) ?></h1>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
-    <table class='table text-center'>
+    <h1 class="text-center"><?php echo strtoupper($school) ?></h1>
+    <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
+    <table class='table text-center table-striped'>
         <thead>
             <tr>
-                <th>item No.</th>
+                <th>Item No.</th>
                 <th>Code</th>
                 <th>Article</th>
                 <th>Description</th>
@@ -31,7 +31,7 @@
                 <th>Unit Value</th>
                 <th>Total Value</th>
                 <th>Source of Funds</th>
-                <th>action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id='equipmentTableTbody'>
@@ -47,8 +47,8 @@
                         <td><?php echo $fetch['total_value'] ?></td>
                         <td><?php echo $fetch['source_of_fund'] ?></td>
                         <td>
-                            <button>EDIT</button>
-                            <button>DELETE</button>
+                            <button class="btn btn-primary">EDIT</button>
+                            <button class="btn btn-danger">DELETE</button>
                         </td>
                     </tr>
                 <?php }while($fetch = $list->fetch_assoc()) ?>

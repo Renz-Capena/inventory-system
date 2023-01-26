@@ -1,7 +1,13 @@
 <?php
+    require "db.php";
     session_start();
 
     // echo $_SESSION['role'];
+    // $userId = $_SESSION['id'];
+
+    // $selectID = "SELECT * FROM `users` WHERE id = '$userId'";
+    // $search = $con->query($selectID);
+    // $fetchID = $search->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +22,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class='container m-0 p-0 d-flex'>
+    <header class="d-flex align-items-center bg-light px-4 py-2" style="position: absolute; top: 10px; right:20px; border-radius: 10px;">
+        <span><i class="fa-solid fa-user fs-4 mt-1" style="color: #1a1a1a"></i></span>
+        <div class="dropdown">
+            <a class="text-decoration-none dropdown-toggle ps-1" style="color: #1a1a1a" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+            </a>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="#">
+                <form action="" method="post">
+                    <input type="submit" class="btn btn-danger btn-sm mt-2" name="logout" value="LOGOUT">
+                </form>
+                </a></li>
+            </ul>
+        </div>
+        </div>
+    </header>
+    <div class='container-fluid m-0 p-0 m-0 flex-grow-1 d-flex'>
         <div class='nav_wrapper'>
             <nav>
                 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height:100vh">
@@ -53,8 +77,46 @@
             </nav>
         </div>
     
-        <div id='dashBoardBody'>
-            <!-- Ilagay dito ang dashboard -->dashboard
+        <div id='dashBoardBody' class="mx-auto" style="width: 70%; margin-top: 80px">
+            <!-- Ilagay dito ang dashboard -->
+            <div class="d-flex" style="gap: 120px;">
+                <div class="card w-75" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 300px">
+                <!-- Card image -->
+                <div class="view overlay">
+                    <img class="card-img-top" src="https://www.untvweb.com/news/wp-content/uploads/2021/03/DepEd-issues-guidelines-web-1024x684.jpg" alt="Card image cap">
+                    <a>
+                    <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <!-- Title -->
+                    <h4 class="card-title">72 Schools</h4>
+                    <hr>
+                    <!-- Text -->
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    content.</p>
+                    <button class="btn btn-primary btn-rounded btn-md">Visit</button>
+                </div>
+                </div>
+                <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 300px">
+                <!-- Card image -->
+                <div class="view overlay">
+                    <img class="card-img-top" src="https://th.bing.com/th/id/R.2796c593aad4f9980cde2dfdaba0f2ff?rik=MR28zsEehEsZzA&riu=http%3a%2f%2ftonlectss.com%2fassets%2fimg%2fproducts%2fADVANCEDCOMPUTERSPATTAMBI.png&ehk=D%2fNf3AxwPqctWVpDl1vs%2bC09upfKpLm4N643hpVwBSI%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" alt="Card image cap">
+                    <a>
+                    <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <!-- Title -->
+                    <h4 class="card-title">45 Batches</h4>
+                    <hr>
+                    <!-- Text -->
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    content.</p>
+                    <button class="btn btn-primary btn-rounded btn-md">Visit</button>
+                </div>
+                </div>
+            </div>
         </div>
     </div>
 
