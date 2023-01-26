@@ -385,42 +385,91 @@
                 const totalValue = $("#inputTotalValue").val();
                 const sourceOfFunds = $("#inputSourceOfFunds").val();
 
-                $.ajax({
-                    url:"schools_equipment/add_equipment.php",
-                    method:'post',
-                    data:{
-                        schoolName : schoolName,
-                        code : code,
-                        article : article,
-                        description : description,
-                        date : date,
-                        unitValue : unitValue,
-                        totalValue : totalValue,
-                        sourceOfFunds : sourceOfFunds
-                    },
-                    success(){
-                        // $('#dashBoardBody').load("schools_equipment/equipment_table.php");
-                        // $("#equipmentTableTbody").load()
-                        $("#inputCode").val("")
-                        $("#inputArticle").val("")
-                        $("#inputDescription").val("")
-                        $("#inputDate").val("")
-                        $("#inputUnitValue").val("")
-                        $("#inputTotalValue").val("")
-                        $("#inputSourceOfFunds").val("")
-                    }
-                })
+                if(code && article && description && date && unitValue && totalValue && sourceOfFunds){
+                    $.ajax({
+                        url:"schools_equipment/add_equipment.php",
+                        method:'post',
+                        data:{
+                            schoolName : schoolName,
+                            code : code,
+                            article : article,
+                            description : description,
+                            date : date,
+                            unitValue : unitValue,
+                            totalValue : totalValue,
+                            sourceOfFunds : sourceOfFunds
+                        },
+                        success(){
 
-                $.ajax({
-                    url: "schools_equipment/equipmentTbody.php",
-                    method : 'post',
-                    data:{
-                        schoolName : schoolName
-                    },
-                    success(e){
-                        $("#equipmentTableTbody").html(e)
-                    }
-                })
+                            $.ajax({
+                                url: "schools_equipment/equipmentTbody.php",
+                                method : 'post',
+                                data:{
+                                    schoolName : schoolName
+                                },
+                                success(e){
+                                    $("#equipmentTableTbody").html(e)
+                                }
+                            })
+
+                            $("#inputCode").val("")
+                            $("#inputArticle").val("")
+                            $("#inputDescription").val("")
+                            $("#inputDate").val("")
+                            $("#inputUnitValue").val("")
+                            $("#inputTotalValue").val("")
+                            $("#inputSourceOfFunds").val("")
+                        }
+                    })
+    
+                    
+                }else{
+                    confirm(`Please fill up all the fields!`)
+
+                    $("#inputCode").val("");
+                    $("#inputArticle").val("");
+                    $("#inputDescription").val("");
+                    $("#inputDate").val("");
+                    $("#inputUnitValue").val("");
+                    $("#inputTotalValue").val("");
+                    $("#inputSourceOfFunds").val("");
+                }
+
+            })
+
+            // DELETE EQUIPMENT ON DB
+            $("#dashBoardBody").on('click','#deleteEquipmentBtn',function(){
+                const id = $(this).val()
+
+                const schoolNameForDelete = $("#schoolNameForDelete").val();
+
+
+                if(confirm(`Are you sure to delete this item?`)){
+                    $.ajax({
+                        url: "schools_equipment/delete_Equipment.php",
+                        method:"post",
+                        data:{
+                            id : id
+                        },
+                        success(){
+
+                            $.ajax({
+                                url: "schools_equipment/equipmentTbody.php",
+                                method : 'post',
+                                data:{
+                                    schoolName : schoolNameForDelete
+                                },
+                                success(e){
+                                    $("#equipmentTableTbody").html(e)
+                                }
+                            })
+
+                        }
+                    })
+    
+                    
+                }
+
 
             })
         })

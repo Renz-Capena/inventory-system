@@ -3,7 +3,7 @@
 
     $school = $_POST['schoolName'];
 
-    echo $school;
+    // echo $school;
         
     $q = "SELECT * FROM `equipment` WHERE school='$school'";
 
@@ -32,14 +32,18 @@
                 <td><?php echo $fetch['total_value'] ?></td>
                 <td><?php echo $fetch['source_of_fund'] ?></td>
                 <td>
-                    <button>EDIT</button>
-                    <button>DELETE</button>
+                    <button class="btn btn-primary">EDIT</button>
+
+                    <!-- FOR DELETE EQUIPMENT -->
+                    <input type="hidden" value='<?php echo $school ?>' id='schoolNameForDelete'>
+                    <!--  -->
+                    <button class="btn btn-danger" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
                 </td>
             </tr>
         <?php }while($fetch = $list->fetch_assoc()) ?>
     <?php }else{ ?>
         <tr>
-            <td colspan='8'>No Data</td>
+            <td colspan='9'>No Data</td>
         </tr>
     <?php } ?>
 </body>

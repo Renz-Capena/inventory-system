@@ -20,7 +20,10 @@
 <body>
     <h1 class="text-center"><?php echo strtoupper($school) ?></h1>
     <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
-    <table class='table text-center table-striped'>
+
+    <input type="text" id='searchEquipmentInput'>
+
+    <table class='table text-center table-striped' placeholder='Search data'>
         <thead>
             <tr>
                 <th>Item No.</th>
@@ -48,7 +51,11 @@
                         <td><?php echo $fetch['source_of_fund'] ?></td>
                         <td>
                             <button class="btn btn-primary">EDIT</button>
-                            <button class="btn btn-danger">DELETE</button>
+
+                            <!-- FOR DELETE EQUIPMENT -->
+                            <input type="hidden" value='<?php echo $school ?>' id='schoolNameForDelete'>
+                            <!--  -->
+                            <button class="btn btn-danger" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
                         </td>
                     </tr>
                 <?php }while($fetch = $list->fetch_assoc()) ?>
