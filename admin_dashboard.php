@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="css/admin_dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="bg-light">
-    <header class="d-flex align-items-center py-2" style="background-color: white; position: absolute; top: 20px; right:20px; padding-inline: 100vw 15px;  border-radius: 10px; z-index: -1">
+<body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay;">
+    <header class="d-flex align-items-center py-2" style="background-color: white; position: absolute; top: 20px; right:20px; padding-inline: 72vw 15px;  border-radius: 10px;">
         <span><i class="fa-solid fa-user fs-4 mt-1" style="color: #1a1a1a"></i></span>
         <div class="dropdown">
             <a class="text-decoration-none dropdown-toggle ps-1" style="color: #1a1a1a" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -60,6 +60,12 @@
                         <a id="test" href="#" class="nav-link link-light">
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-school"></i></span>
                         School
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-light">
+                        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-users"></i></span>
+                        Manage Users
                         </a>
                     </li>
                     <li>
