@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="css/admin_dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-    <header class="d-flex align-items-center bg-light px-4 py-2" style="position: absolute; top: 10px; right:20px; border-radius: 10px;">
+<body class="bg-light">
+    <header class="d-flex align-items-center py-2" style="background-color: white; position: absolute; top: 20px; right:20px; padding-inline: 100vw 15px;  border-radius: 10px; z-index: -1">
         <span><i class="fa-solid fa-user fs-4 mt-1" style="color: #1a1a1a"></i></span>
         <div class="dropdown">
             <a class="text-decoration-none dropdown-toggle ps-1" style="color: #1a1a1a" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,27 +43,27 @@
     <div class='container-fluid m-0 p-0 m-0 flex-grow-1 d-flex'>
         <div class='nav_wrapper'>
             <nav>
-                <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height:100vh">
+                <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-light" style="width: 280px; height:100vh; ">
                     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <img class="bi me-2" width="50" height="50" src="https://sdovalenzuelacity.deped.gov.ph/wp-content/uploads/2021/04/New-DO-Logo.png" alt="logo">
-                    <span class="fs-4">Inventory System</span>
+                    <span class="fs-4 text-light">Inventory System</span>
                     </a>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                     <li>
-                        <a id="test2" class="nav-link link-dark active" href="javascript:window.location.reload(true)">
+                        <a id="test2" class="nav-link link-light active" href="javascript:window.location.reload(true)">
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-chart-simple"></i></span>
                         Dashboard
                         </a>
                     </li>
                     <li id='schoolBtn'>
-                        <a id="test" href="#" class="nav-link link-dark">
+                        <a id="test" href="#" class="nav-link link-light">
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-school"></i></span>
                         School
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
+                        <a href="#" class="nav-link link-light">
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-phone"></i></span>
                         Contact
                         </a>
@@ -77,44 +77,41 @@
             </nav>
         </div>
     
-        <div id='dashBoardBody' class="mx-auto" style="width: 70%; margin-top: 80px">
+        <div id='dashBoardBody' class="mx-auto" style="width: 70%; margin-top: 110px;">
             <!-- Ilagay dito ang dashboard -->
-            <div class="d-flex" style="gap: 120px;">
-                <div class="card w-75" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 300px">
-                <!-- Card image -->
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://www.untvweb.com/news/wp-content/uploads/2021/03/DepEd-issues-guidelines-web-1024x684.jpg" alt="Card image cap">
-                    <a>
-                    <div class="mask rgba-white-slight"></div>
-                    </a>
+            <div class="d-flex py-5 px-5 text-light" style="gap: 120px; background-color: white;">
+                <div class="card w-75" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
+                    <div class="card-body bg-primary rounded-1">
+                        <!-- Title -->
+                        <h4 class="card-title"><i class="fa-solid fa-users-gear me-3"></i>1 <br> <p class="mt-2">System Admin</p></h4>
+                        <hr>
+                        <!-- Text -->
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                        content.</p>
+                        <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <!-- Title -->
-                    <h4 class="card-title">72 Schools</h4>
-                    <hr>
-                    <!-- Text -->
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                    content.</p>
-                    <button class="btn btn-primary btn-rounded btn-md">Visit</button>
+                <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
+                    <div class="card-body bg-success rounded-1">
+                        <!-- Title -->
+                        <h4 class="card-title"><i class="fa-solid fa-school me-3"></i>72 <br> <p class="mt-2">Schools</p></h4>
+                        <hr>
+                        <!-- Text -->
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                        content.</p>
+                        <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
+                    </div>
                 </div>
-                </div>
-                <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 300px">
-                <!-- Card image -->
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://th.bing.com/th/id/R.2796c593aad4f9980cde2dfdaba0f2ff?rik=MR28zsEehEsZzA&riu=http%3a%2f%2ftonlectss.com%2fassets%2fimg%2fproducts%2fADVANCEDCOMPUTERSPATTAMBI.png&ehk=D%2fNf3AxwPqctWVpDl1vs%2bC09upfKpLm4N643hpVwBSI%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" alt="Card image cap">
-                    <a>
-                    <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <!-- Title -->
-                    <h4 class="card-title">45 Batches</h4>
-                    <hr>
-                    <!-- Text -->
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                    content.</p>
-                    <button class="btn btn-primary btn-rounded btn-md">Visit</button>
-                </div>
+                <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
+                    <div class="card-body bg-danger rounded-1">
+                        <!-- Title -->
+                        <h4 class="card-title"><i class="fa-solid fa-users me-3"></i>21 <br> <p class="mt-2">Users</p></h4>
+                        <hr>
+                        <!-- Text -->
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                        content.</p>
+                        <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
