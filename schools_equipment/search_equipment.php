@@ -1,11 +1,23 @@
 <?php
     require "../db.php";
 
-    $school = $_POST['schoolName'];
+    $schoolName = $_POST['schoolName'];
+    $search = $_POST['searchValue'];
+    // $search = ;
 
-    // echo $school;
-        
-    $q = "SELECT * FROM `equipment` WHERE school='$school'";
+    // $q = "SELECT * FROM equipment WHERE school='$schoolName' AND code LIKE '%".$search."%' OR article LIKE '%".$search."%' OR description LIKE '%".$search."%' OR date_acquired LIKE '%".$search."%' OR unit_value LIKE '%".$search."%' OR total_value LIKE '%".$search."%' OR source_of_fund LIKE '%".$search."%'   ";
+
+    // if($search){
+    //     $x = "OR article LIKE '%".$search."%' OR description LIKE '%".$search."%'";
+    //     $q = "SELECT * FROM equipment WHERE school='$schoolName' AND code LIKE '%". $search ."%' ".$x;
+    // }else{
+    //     $q = "SELECT * FROM equipment WHERE school='$schoolName'";
+    //     // $q = "SELECT * FROM equipment";
+    // }
+    
+    $q = "SELECT * FROM equipment WHERE school = '$schoolName' AND ( code LIKE '%$search%' OR article LIKE '%$search%' OR description LIKE '%$search%' OR date_acquired LIKE '%$search%' OR unit_value LIKE '%$search%' OR total_value LIKE '%$search%' OR source_of_fund LIKE '%$search%')";
+
+
 
     $list = $con->query($q);
 
@@ -22,7 +34,7 @@
 <body>
     
     <!-- FOR DELETE AND SEARCH EQUIPMENT -->
-    <input type="hidden" value='<?php echo $school ?>' id='schoolNameForDeleteAndSearch'>
+    <input type="hidden" value='<?php echo $schoolName ?>' id='schoolNameForDeleteAndSearch'>
     <!--  -->
     
     <?php if($list->num_rows){ ?>
@@ -47,5 +59,6 @@
             <td colspan='9'>No Data</td>
         </tr>
     <?php } ?>
+
 </body>
 </html>

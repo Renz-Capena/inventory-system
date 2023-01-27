@@ -19,7 +19,7 @@
 <body>
     <input type="hidden" id='idEditSchool' value='<?php echo $fetch['id'] ?>'>
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="inputSchoolNameEdit" value='<?php echo $fetch['school_name'] ?>' placeholder="School Name">
+        <input type="text" class="form-control" id="inputSchoolNameEdit" value='<?php echo $fetch['school_name'] ?>' placeholder="School Name" disabled>
         <label for="floatingInput">School Name</label>
     </div>
     <div class="form-floating mb-3">

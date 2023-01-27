@@ -19,9 +19,9 @@
 </head>
 <body>
     <h1 class="text-center"><?php echo strtoupper($school) ?></h1>
-    <!-- <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
+    <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
 
-    <input type="text" id='searchEquipmentInput'> -->
+
 
 
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
@@ -37,13 +37,14 @@
             </div>
         </div>
 
-
-        <!-- <div class="d-flex align-items-center gap-2">
-            <i class="fas fa-search fs-5" aria-hidden="true"></i>
-            <input id='searchEquipmentInput' class="form-control form-control-sm fs-17 py-2" type="text" placeholder='Search Data'
-            aria-label="Search">
-        </div> -->
     </div>
+
+
+
+    <!-- FOR DELETE AND SEARCH EQUIPMENT -->
+    <input type="hidden" value='<?php echo $school ?>' id='schoolNameForDeleteAndSearch'>
+    <!--  -->
+
 
     <table class='table text-center table-striped' placeholder='Search data'>
         <thead>
@@ -72,13 +73,11 @@
                         <td><?php echo $fetch['total_value'] ?></td>
                         <td><?php echo $fetch['source_of_fund'] ?></td>
                         <td>
-                            <!-- <button class="btn btn-primary">EDIT</button> -->
+                           
                             <button type="button" class="btn btn-primary" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'>EDIT</button>
 
-                            <!-- FOR DELETE EQUIPMENT -->
-                            <input type="hidden" value='<?php echo $school ?>' id='schoolNameForDelete'>
-                            <!--  -->
                             <button class="btn btn-danger" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
+
                         </td>
                     </tr>
                 <?php }while($fetch = $list->fetch_assoc()) ?>
