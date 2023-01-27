@@ -16,13 +16,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <div class="d-flex align-items-center justify-content-between mb-3 mt-4">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSchool">Add School</button>
-        <!-- <input type="text" id='searchBar' placeholder='Search Data'> -->
+    <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
+        <div class="d-flex align-items-center gap-4">
+            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addSchool">Add School</button>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Select District</option>
+                <option value="North">North</option>
+                <option value="South">South</option>
+                <option value="West">West</option>
+                <option value="East">East</option>
+            </select>
+        </div>
         <div class="d-flex align-items-center gap-2">
-            <i class="fas fa-search fs-5" aria-hidden="true"></i>
-            <input id='searchBar' class="form-control form-control-sm fs-17 py-2" type="text" placeholder='Search Data'
+            <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" type="text" placeholder='Search Data'
             aria-label="Search">
+            <div style="position: absolute; top: 10px; right: 180px; z-index: 1;">
+                <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
+            </div>
         </div>
     </div>
     <table class='table text-center table-striped'>

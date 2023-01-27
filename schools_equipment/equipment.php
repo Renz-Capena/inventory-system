@@ -19,9 +19,31 @@
 </head>
 <body>
     <h1 class="text-center"><?php echo strtoupper($school) ?></h1>
-    <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
+    <!-- <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
 
-    <input type="text" id='searchEquipmentInput'>
+    <input type="text" id='searchEquipmentInput'> -->
+
+
+    <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
+        <!-- <input type="text" id='searchBar' placeholder='Search Data'> -->
+
+
+        <div class="d-flex align-items-center gap-2">
+            <input id='searchEquipmentInput' class="form-control form-control-sm fs-17 py-2 ps-5" type="text" placeholder='Search Data'
+            aria-label="Search">
+            <div style="position: absolute; top: 10px; right: 180px; z-index: 1;">
+                <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
+            </div>
+        </div>
+
+
+        <!-- <div class="d-flex align-items-center gap-2">
+            <i class="fas fa-search fs-5" aria-hidden="true"></i>
+            <input id='searchEquipmentInput' class="form-control form-control-sm fs-17 py-2" type="text" placeholder='Search Data'
+            aria-label="Search">
+        </div> -->
+    </div>
 
     <table class='table text-center table-striped' placeholder='Search data'>
         <thead>
