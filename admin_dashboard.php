@@ -175,6 +175,25 @@
         </div>
     </div>
 
+    <!-- MODAL EDIT EQUIPMENT -->
+    <div class="modal fade" id="editEquipmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Equipment</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id='editEquipmentModalBody' class="modal-body">
+                <!-- school update info -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id='saveEditEquipmentBtn' data-bs-dismiss="modal">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL  ADD EQUIPMENT -->
     <div class="modal fade" id="addEquipmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -409,23 +428,23 @@
                                 },
                                 success(e){
                                     $("#equipmentTableTbody").html(e)
+
+                                    $("#inputCode").val("")
+                                    $("#inputArticle").val("")
+                                    $("#inputDescription").val("")
+                                    $("#inputDate").val("")
+                                    $("#inputUnitValue").val("")
+                                    $("#inputTotalValue").val("")
+                                    $("#inputSourceOfFunds").val("")
                                 }
                             })
 
-                            $("#inputCode").val("")
-                            $("#inputArticle").val("")
-                            $("#inputDescription").val("")
-                            $("#inputDate").val("")
-                            $("#inputUnitValue").val("")
-                            $("#inputTotalValue").val("")
-                            $("#inputSourceOfFunds").val("")
+                            
                         }
                     })
     
                     
                 }else{
-                    confirm(`Please fill up all the fields!`)
-
                     $("#inputCode").val("");
                     $("#inputArticle").val("");
                     $("#inputDescription").val("");
@@ -433,6 +452,8 @@
                     $("#inputUnitValue").val("");
                     $("#inputTotalValue").val("");
                     $("#inputSourceOfFunds").val("");
+                    confirm(`Please fill up all the fields!`)
+
                 }
 
             })
@@ -471,6 +492,77 @@
                 }
 
 
+            })
+
+            // EDIT EQUIPMENT MODAL FORM UPDATE
+            $("#dashBoardBody").on("click","#editEquipmentBtn",function(){
+                const id = $(this).val()
+
+
+                $.ajax({
+                    url: "schools_equipment/edit_equipment_modal.php",
+                    method: 'post',
+                    data: {
+                        id:id
+                    },
+                    success(e){
+                        $("#editEquipmentModalBody").html(e)
+                    }
+                })
+
+            })
+
+            $("#saveEditEquipmentBtn").click(function(){
+
+                const id = $("#updateIdEquipment").val();
+                const schoolName = $("#updateSchoolNameEquipment").val();
+
+                const code = $("#inputCodeEdit").val();
+                const article = $("#inputArticleEdit").val();
+                const description = $("#inputDescriptionEdit").val();
+                const date = $("#inputDateEdit").val();
+                const unitValue = $("#inputUnitValueEdit").val();
+                const totalValue = $("#inputTotalValueEdit").val();
+                const sourceOfFunds = $("#inputSourceOfFundsEdit").val();
+
+                if(code && article && description && date && unitValue && totalValue && sourceOfFunds){
+                    $.ajax({
+                        url:"schools_equipment/update_equipment.php",
+                        method:'post',
+                        data:{
+                            id:id,
+                            code : code,
+                            article : article,
+                            description : description,
+                            date : date,
+                            unitValue : unitValue,
+                            totalValue : totalValue,
+                            sourceOfFunds : sourceOfFunds
+                        },
+                        success(){
+                            // $("#dashBoardBody").html(e)
+    
+                            $.ajax({
+                                    url: "schools_equipment/equipmentTbody.php",
+                                    method : 'post',
+                                    data:{
+                                        schoolName : schoolName
+                                    },
+                                    success(e){
+                                        $("#equipmentTableTbody").html(e)
+    
+                                        $("#inputCodeEdit").val("")
+                                        $("#inputArticleEdit").val("")
+                                        $("#inputDescriptionEdit").val("")
+                                        $("#inputDateEdit").val("")
+                                        $("#inputUnitValueEdit").val("")
+                                        $("#inputTotalValueEdit").val("")
+                                        $("#inputSourceOfFundsEdit").val("")
+                                    }
+                            })
+                        }
+                    })
+                }
             })
         })
     </script>

@@ -50,7 +50,8 @@
                         <td><?php echo $fetch['total_value'] ?></td>
                         <td><?php echo $fetch['source_of_fund'] ?></td>
                         <td>
-                            <button class="btn btn-primary">EDIT</button>
+                            <!-- <button class="btn btn-primary">EDIT</button> -->
+                            <button type="button" class="btn btn-primary" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'>EDIT</button>
 
                             <!-- FOR DELETE EQUIPMENT -->
                             <input type="hidden" value='<?php echo $school ?>' id='schoolNameForDelete'>
@@ -61,7 +62,7 @@
                 <?php }while($fetch = $list->fetch_assoc()) ?>
             <?php }else{ ?>
                 <tr>
-                    <td colspan='8'>No Data</td>
+                    <td colspan='9'>No Data</td>
                 </tr>
             <?php } ?>
         </tbody>

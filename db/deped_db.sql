@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2023 at 04:26 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jan 27, 2023 at 01:53 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,7 +53,51 @@ INSERT INTO `equipment` (`id`, `code`, `article`, `description`, `date_acquired`
 (10, 'batch 13', 'article mema', 'sapatos', '12/12/2020', '7000', '7000', 'national', 'punturin'),
 (11, 'batch 34', 'article joke', 'cpu', '12/12/1997', '56000', '56000', 'national', 'canumay'),
 (12, 'batch 34', 'sample article', 'samsung laptop red', '01/23/2019', '3455', '3455', 'national', 'punturin'),
-(13, 'bactch 29', 'sample artic;e', 'laptop', '01/23/12', '23000', '56000', 'deped', 'lawangbato');
+(13, 'bactch 29', 'sample artic;e', 'laptop', '01/23/12', '23000', '56000', 'deped', 'lawangbato'),
+(14, 'batch 32', 'sample article', 'laptop', '01/23/2022', '12000', '12000', 'deped', 'canumay school');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schools`
+--
+
+CREATE TABLE `schools` (
+  `id` int(11) NOT NULL,
+  `school_name` varchar(250) NOT NULL,
+  `address` varchar(250) NOT NULL,
+  `principal` varchar(250) NOT NULL,
+  `contact` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `schools`
+--
+
+INSERT INTO `schools` (`id`, `school_name`, `address`, `principal`, `contact`) VALUES
+(6, 'canumay school', 'canumay', 'Renz Capena', '0923131');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `pass` varchar(250) NOT NULL,
+  `role` varchar(250) NOT NULL,
+  `school` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `pass`, `role`, `school`) VALUES
+(3, 'admin@1', 'admin', 'admin', 'none'),
+(4, 'client@1', 'client', 'client', 'punturin');
 
 --
 -- Indexes for dumped tables
@@ -66,6 +110,18 @@ ALTER TABLE `equipment`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `schools`
+--
+ALTER TABLE `schools`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -73,7 +129,19 @@ ALTER TABLE `equipment`
 -- AUTO_INCREMENT for table `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `schools`
+--
+ALTER TABLE `schools`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
