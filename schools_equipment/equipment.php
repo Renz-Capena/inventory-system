@@ -19,7 +19,7 @@
 </head>
 <body>
     <h1 class="text-center"><?php echo strtoupper($school) ?></h1>
-    <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
+    <!-- <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button> -->
 
 
 
