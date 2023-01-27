@@ -459,7 +459,7 @@
             $("#dashBoardBody").on('click','#deleteEquipmentBtn',function(){
                 const id = $(this).val()
 
-                const schoolNameForDelete = $("#schoolNameForDelete").val();
+                const schoolNameForDelete = $("#schoolNameForDeleteAndSearch").val();
 
 
                 if(confirm(`Are you sure to delete this item?`)){
@@ -509,6 +509,7 @@
 
             })
 
+            // UPDATE EQUIPMENT ON DB
             $("#saveEditEquipmentBtn").click(function(){
 
                 const id = $("#updateIdEquipment").val();
@@ -560,6 +561,24 @@
                         }
                     })
                 }
+            })
+
+            // SEARCH EQUIPMENT
+            $("#dashBoardBody").on("keyup","#searchEquipmentInput",function(){
+                const searchValue = $(this).val();
+                const schoolName = $("#schoolNameForDeleteAndSearch").val();
+
+                $.ajax({
+                    url:"schools_equipment/search_equipment.php",
+                    method:"post",
+                    data:{
+                        searchValue : searchValue,
+                        schoolName : schoolName
+                    },
+                    success(e){
+                        $("#equipmentTableTbody").html(e)
+                    }
+                })
             })
         })
     </script>
