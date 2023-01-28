@@ -2,12 +2,38 @@
     require "db.php";
     session_start();
 
-    // echo $_SESSION['role'];
-    // $userId = $_SESSION['id'];
+    if(empty($_SESSION['status']) || $_SESSION['status'] == 'invalid'){
 
-    // $selectID = "SELECT * FROM `users` WHERE id = '$userId'";
-    // $search = $con->query($selectID);
-    // $fetchID = $search->fetch_assoc();
+        header("location: index.php");
+    }
+
+    if($_SESSION['status'] == 'client'){
+
+        header("location: client_dashBoard.php");
+    }
+    
+    // Logout btn
+    if(isset($_POST['logoutBtn'])){
+        unset($_SESSION['id']);
+        unset($_SESSION['status']);
+
+        header("location: index.php");
+    }
+
+    // =================FOR DASH BOARD COUNT
+    // ADMIN
+    $countAdmin = "SELECT * FROM `users` WHERE role='admin'";
+    $listAdmin = $con->query($countAdmin);
+    $adminCount = $listAdmin->num_rows;
+    // CLIENT
+    $countClient = "SELECT * FROM `users` WHERE role='client'";
+    $listClient = $con->query($countClient);
+    $clientCount = $listClient->num_rows;
+    // SCHOOL
+    $countSchool = "SELECT * FROM `schools`";
+    $listSchool = $con->query($countSchool);
+    $schoolCount = $listSchool->num_rows;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,6 +100,9 @@
                         Contact
                         </a>
                     </li>
+                    <form method='post'>
+                        <button name='logoutBtn'>LOGOUT</button>
+                    </form>
                     </ul>
                 </div>
                 <!-- <ul>
@@ -89,7 +118,7 @@
                 <div class="card w-75" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
                     <div class="card-body bg-primary rounded-1">
                         <!-- Title -->
-                        <h4 class="card-title"><i class="fa-solid fa-users-gear me-3"></i>1 <br> <p class="mt-2">System Admin</p></h4>
+                        <h4 class="card-title"><i class="fa-solid fa-users-gear me-3"></i><?php echo $adminCount ?> <br> <p class="mt-2">System Admin</p></h4>
                         <hr>
                         <!-- Text -->
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -100,7 +129,7 @@
                 <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
                     <div class="card-body bg-success rounded-1">
                         <!-- Title -->
-                        <h4 class="card-title"><i class="fa-solid fa-school me-3"></i>72 <br> <p class="mt-2">Schools</p></h4>
+                        <h4 class="card-title"><i class="fa-solid fa-school me-3"></i><?php echo $schoolCount ?> <br> <p class="mt-2">Schools</p></h4>
                         <hr>
                         <!-- Text -->
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -111,7 +140,7 @@
                 <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
                     <div class="card-body bg-danger rounded-1">
                         <!-- Title -->
-                        <h4 class="card-title"><i class="fa-solid fa-users me-3"></i>21 <br> <p class="mt-2">Users</p></h4>
+                        <h4 class="card-title"><i class="fa-solid fa-users me-3"></i><?php echo $clientCount ?> <br> <p class="mt-2">Users</p></h4>
                         <hr>
                         <!-- Text -->
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -715,6 +744,7 @@
                 })
             })
 
+            // MANAGE USER (UPDATE BTN ON DB)
             $("#updateUserManageUser").click(function(){
 
                 const id = $("#updateUserIdManageUser").val();
@@ -736,6 +766,22 @@
                     success(){
                         $("#manageUserTbody").load("manage_user/manageUserTbody.php")
                         // $("#manageUserTbody").html(e)
+                    }
+                })
+            })
+
+            // MANAGE USER (SEARCH ON DB)
+            $("#dashBoardBody").on("keyup","#searchUserDb",function(){
+                const searchValue = $(this).val()
+
+                $.ajax({
+                    url: "manage_user/userSearch.php",
+                    method:"post",
+                    data:{
+                        searchValue : searchValue
+                    },
+                    success(e){
+                        $("#manageUserTbody").html(e)
                     }
                 })
             })

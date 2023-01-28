@@ -2,11 +2,15 @@
     require "db.php";
     session_start();
 
+
+    $_SESSION['id'];
+    $_SESSION['status'];
     $school = $_SESSION['school'];
 
     $q = "SELECT * FROM `equipment` WHERE school='$school'";
     $list = $con->query($q);
     $numOfRow = $list->num_rows;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -2,6 +2,16 @@
     require "db.php";
     session_start();
 
+    if(empty($_SESSION['status'])){
+        $_SESSION['status'] = 'invalid';
+    }
+
+    if($_SESSION['status'] == 'admin'){
+        header("location: admin_dashboard.php");
+    }
+
+    // echo $_SESSION['status'];
+
     if(isset($_POST['loginBtn'])){
         $email = $_POST['email'];
         $pass = $_POST['pass'];
@@ -13,8 +23,11 @@
         // $_SESSION['id'] = $info['id'];
 
         if($list->num_rows){
-            $_SESSION['role'] = $info['role'];
+
+            $_SESSION['id'] = $info['id'];
             $_SESSION['school'] = $info['school'];
+            $_SESSION['status'] = $info['role'];
+
 
             if($info['role'] == 'admin'){
                 header("location: admin_dashboard.php");
@@ -25,7 +38,7 @@
             echo "<script>alert('wala')</script>";
         }
 
-        header('Refresh:0');
+        // header('Refresh:0');
     }
 ?>
 <!DOCTYPE html>
