@@ -1,7 +1,8 @@
 <?php
     session_start();
 
-    echo $_SESSION['role'];
+    echo $_SESSION['id'];
+    echo $_SESSION['status'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
