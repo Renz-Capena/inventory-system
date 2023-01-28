@@ -14,6 +14,7 @@
 
         if($list->num_rows){
             $_SESSION['role'] = $info['role'];
+            $_SESSION['school'] = $info['school'];
 
             if($info['role'] == 'admin'){
                 header("location: admin_dashboard.php");

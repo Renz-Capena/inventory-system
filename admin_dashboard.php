@@ -25,7 +25,7 @@
     <header class="d-flex align-items-center py-2" style="background-color: white; position: absolute; top: 20px; right:20px; padding-inline: 72vw 15px;  border-radius: 10px;">
         <span><i class="fa-solid fa-user fs-4 mt-1" style="color: #1a1a1a"></i></span>
         <div class="dropdown">
-            <a class="text-decoration-none dropdown-toggle ps-1" style="color: #1a1a1a" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a id="dropdownBtn" class="text-decoration-none dropdown-toggle ps-1" style="color: #1a1a1a" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin
             </a>
 
@@ -288,6 +288,12 @@
 
     <script>
         $(document).ready(function(){
+            // logout
+            $('#dropdownBtn').click(function(){
+                
+                $('.dropdown-menu').toggleClass('d-block');
+            })
+
             // NAV
             $('#schoolBtn').click(function(){
                 $('#dashBoardBody').load("table.php");
