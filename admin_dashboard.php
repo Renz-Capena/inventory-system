@@ -9,7 +9,7 @@
 
     if($_SESSION['status'] == 'client'){
 
-        header("location: client_dashBoard.php");
+        header("location: client_dashboard.php");
     }
     
     // Logout btn
@@ -59,7 +59,7 @@
                 <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                 <li><a class="dropdown-item" href="#">
                 <form action="" method="post">
-                    <input type="submit" class="btn btn-danger btn-sm mt-2" name="logout" value="LOGOUT">
+                    <input type="submit" class="btn btn-danger btn-sm mt-2" name="logoutBtn" value="LOGOUT">
                 </form>
                 </a></li>
             </ul>
@@ -100,9 +100,6 @@
                         Contact
                         </a>
                     </li>
-                    <form method='post'>
-                        <button name='logoutBtn'>LOGOUT</button>
-                    </form>
                     </ul>
                 </div>
                 <!-- <ul>
@@ -114,37 +111,35 @@
     
         <div id='dashBoardBody' class="mx-auto" style="width: 70%; margin-top: 110px;">
             <!-- Ilagay dito ang dashboard -->
-            <div class="d-flex py-5 px-5 text-light" style="gap: 120px; background-color: white;">
-                <div class="card w-75" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
+            <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Dashboard</div>
+            <div class="d-flex py-5 px-5 text-light" style="gap: 100px; background-color: white;">
+                <div class="card w-100" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
                     <div class="card-body bg-primary rounded-1">
                         <!-- Title -->
                         <h4 class="card-title"><i class="fa-solid fa-users-gear me-3"></i><?php echo $adminCount ?> <br> <p class="mt-2">System Admin</p></h4>
                         <hr>
                         <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                        content.</p>
+                        <p class="card-text">Number of People who have more control to the system.</p>
                         <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
                     </div>
                 </div>
-                <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
+                <div class="card w-100" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
                     <div class="card-body bg-success rounded-1">
                         <!-- Title -->
                         <h4 class="card-title"><i class="fa-solid fa-school me-3"></i><?php echo $schoolCount ?> <br> <p class="mt-2">Schools</p></h4>
                         <hr>
                         <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                        content.</p>
+                        <p class="card-text">Number of registered School.</p>
                         <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
                     </div>
                 </div>
-                <div class="card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
+                <div class="card w-100" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
                     <div class="card-body bg-danger rounded-1">
                         <!-- Title -->
                         <h4 class="card-title"><i class="fa-solid fa-users me-3"></i><?php echo $clientCount ?> <br> <p class="mt-2">Users</p></h4>
                         <hr>
                         <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                        content.</p>
+                        <p class="card-text">Number of registered users.</p>
                         <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
                     </div>
                 </div>
