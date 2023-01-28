@@ -14,10 +14,21 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Manage User</h1>
-    <button type="button" id='addUsersSchoolsModal' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserManageUser">Add User</button>
+    <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Manage Users</div>
 
-    <input type="text" id="searchUserDb" placeholder='Search user'>
+    <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
+        <button type="button" id='addUsersSchoolsModal' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserManageUser">Add User</button>
+
+
+        <div class="d-flex align-items-center gap-2">
+            <input id='searchUserDb' class="form-control form-control-sm fs-17 py-2 ps-5" type="text" placeholder='Search User'
+            aria-label="Search">
+            <div style="position: absolute; top: 10px; right: 180px; z-index: 1;">
+                <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
+            </div>
+        </div>
+
+    </div>
 
     <table class='table text-center'>
         <thead>

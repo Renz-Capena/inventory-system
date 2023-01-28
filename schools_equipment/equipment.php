@@ -15,10 +15,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
-    <h1 class="text-center"><?php echo strtoupper($school) ?></h1>
+    <!-- <h1 class="text-start"><?php echo ucwords($school) ?></h1> -->
+    <div class="text-secondary fw-bold p-2 ps-0 mb-3 w-50 h3"> <a id="back" class=" text-secondary" href="#">School List</a>/<?php echo ucwords($school) ?></div>
     <!-- <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button> -->
 
 
@@ -88,5 +90,11 @@
             <?php } ?>
         </tbody>
     </table>
+    <script>
+        $('#back').click(function(){
+                $('#dashBoardBody').load("table.php");
+
+        });
+    </script>
 </body>
 </html>

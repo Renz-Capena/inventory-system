@@ -2,6 +2,25 @@
     require "db.php";
     session_start();
 
+    if(empty($_SESSION['status']) || $_SESSION['status'] == 'invalid'){
+
+        header("location: index.php");
+    }
+
+    if($_SESSION['status'] == 'admin'){
+
+        header("location: admin_dashboard.php");
+    }
+    
+    // Logout btn
+    if(isset($_POST['logoutBtn'])){
+        unset($_SESSION['id']);
+        unset($_SESSION['status']);
+        unset($_SESSION['school']);
+
+        header("location: index.php");
+    }
+
 
     $_SESSION['id'];
     $_SESSION['status'];
@@ -36,7 +55,7 @@
                 <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                 <li><a class="dropdown-item" href="#">
                 <form action="" method="post">
-                    <input type="submit" class="btn btn-danger btn-sm mt-2" name="logout" value="LOGOUT">
+                    <input type="submit" class="btn btn-danger btn-sm mt-2" name="logoutBtn" value="LOGOUT">
                 </form>
                 </a></li>
             </ul>
@@ -61,7 +80,7 @@
                         </li>
                         <li id='equipmentListBtn'>
                             <a id="navBtn2" href="#" class="nav-link link-light">
-                            <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-school"></i></span>
+                            <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-computer"></i></span>
                             Equipment List
                             </a>
                         </li>
@@ -76,6 +95,7 @@
     
         <div id='dashBoardBody' class="mx-auto" style="width: 70%; margin-top: 110px;">
             <!-- Ilagay dito ang dashboard -->
+            <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Dashboard</div>
             <div class="d-flex py-5 px-5 text-light" style="gap: 120px; background-color: white;">
                 <div class="card w-75" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
                     <div class="card-body bg-primary rounded-1">

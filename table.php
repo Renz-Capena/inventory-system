@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+    <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">School List</div>
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         <div class="d-flex align-items-center gap-4">
             <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addSchool">Add School</button>

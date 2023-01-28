@@ -9,6 +9,9 @@
     if($_SESSION['status'] == 'admin'){
         header("location: admin_dashboard.php");
     }
+    if($_SESSION['status'] == 'client'){
+        header("location: client_dashboard.php");
+    }
 
     // echo $_SESSION['status'];
 
@@ -35,7 +38,7 @@
                 header("location: client_dashboard.php");
             }
         }else{
-            echo "<script>alert('wala')</script>";
+            echo "<script>alert('Wrong Email or Password. Try Again!')</script>";
         }
 
         // header('Refresh:0');
@@ -52,7 +55,7 @@
     <link rel="stylesheet" href="css/index.css">
     <title>Login</title>
 </head>
-<body>
+<body style="background: url(img/sdo-logo.png) no-repeat; background-color: #f5f5f5; background-size: cover;">
     <!-- <form method='post'>
         <input type="text" name='email'>
         <input type="pass" name='pass'>
@@ -80,6 +83,6 @@
           </form>
     </div>
     <?php include 'footer.php'?>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 </body>
 </html>
