@@ -51,25 +51,25 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                     <li>
-                        <a id="test2" class="nav-link link-light active" href="javascript:window.location.reload(true)">
+                        <a id="navBtn1" class="nav-link link-light active" href="javascript:window.location.reload(true)">
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-chart-simple"></i></span>
                         Dashboard
                         </a>
                     </li>
                     <li id='schoolBtn'>
-                        <a id="test" href="#" class="nav-link link-light">
+                        <a id="navBtn2" href="#" class="nav-link link-light">
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-school"></i></span>
                         School
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link link-light">
+                    <li id='manageUserBtn'>
+                        <a id='navBtn3' href="#" class="nav-link link-light">
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-users"></i></span>
                         Manage Users
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link link-light">
+                    <li id='contactBtnNav'>
+                        <a id='navBtn4' href="#" class="nav-link link-light">
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-phone"></i></span>
                         Contact
                         </a>
@@ -246,13 +246,56 @@
         </div>
     </div>
 
+    <!-- MODAL MANAGE USER (ADD) -->
+    <div class="modal fade" id="addUserManageUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div id='modalBodyAddUserSchool' class="modal-body">
+                <!-- add school modal info -->
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id='addUserDbBtn' class="btn btn-primary" data-bs-dismiss="modal">Add User</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL MANAGE USER (EDIT) -->
+    <div class="modal fade" id="EditUserManageUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id='editModalManageUser' class="modal-body">
+                <!-- Modal edit body in another index -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='updateUserManageUser'>Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function(){
             // NAV
             $('#schoolBtn').click(function(){
                 $('#dashBoardBody').load("table.php");
-                $('#test').addClass('active');
-                $('#test2').removeClass('active');
+
+                $('#navBtn1').removeClass('active');
+                $('#navBtn2').addClass('active');
+                $('#navBtn3').removeClass('active');
+                $('#navBtn4').removeClass('active');
             })
 
             // ADD SCHOOL
@@ -585,6 +628,118 @@
                         $("#equipmentTableTbody").html(e)
                     }
                 })
+            })
+
+            // MANAGE USER BUTTON
+            $("#manageUserBtn").click(function(){
+
+                $('#navBtn1').removeClass('active');
+                $('#navBtn2').removeClass('active');
+                $('#navBtn3').addClass('active');
+                $('#navBtn4').removeClass('active');
+
+                $("#dashBoardBody").load("manage_user/manageUser.php")
+            })
+
+            // MANAGE USER (ADD USER BUTTON FOR MODAL)
+            $("#dashBoardBody").on("click","#addUsersSchoolsModal",function(){
+                $("#modalBodyAddUserSchool").load("manage_user/addUserSchoolList.php")
+            })
+
+            // MANAGE USER (ADD USER BTN ON DB)
+            $("#addUserDbBtn").click(function(){
+                const email = $("#inputEmail").val();
+                const pass = $("#inputPassword").val();
+                const role = $("#inputRole").val();
+                const school = $("#inputSchool").val();
+
+                if(email && pass){
+                    $.ajax({
+                        url:"manage_user/addUser.php",
+                        method:"post",
+                        data:{
+                            email:email,
+                            pass:pass,
+                            role:role,
+                            school:school
+                        },
+                        success(){
+                            $("#manageUserTbody").load("manage_user/manageUserTbody.php")
+                        }
+                    })
+                }else{
+                    $("#inputEmail").val("");
+                    $("#inputPassword").val("");
+
+                    confirm("Please fill up all field!")
+                }
+            })
+
+            // MANAGE USER (DELETE USER BTN ON DB)
+            $("#dashBoardBody").on("click","#deleteUserManageUser",function(){
+                const id = $(this).val();
+
+                if(confirm("Are you sure to delete this item?")){
+                    $.ajax({
+                        url:"manage_user/deleteUser.php",
+                        method:'post',
+                        data:{
+                            id:id
+                        },
+                        success(){
+                            $("#manageUserTbody").load("manage_user/manageUserTbody.php")
+                        }
+                    })
+                }
+            })
+
+            // MANAGE USER (EDIT USER BTN FOR MODAL)
+            $("#dashBoardBody").on("click","#editUserManageUser",function(){
+                const id = $(this).val();
+
+                $.ajax({
+                    url:"manage_user/editUserModal.php",
+                    method:"post",
+                    data:{
+                        id:id
+                    },
+                    success(e){
+                        $("#editModalManageUser").html(e)
+                    }
+                })
+            })
+
+            $("#updateUserManageUser").click(function(){
+
+                const id = $("#updateUserIdManageUser").val();
+                const email = $("#inputEmailEdit").val();
+                const pass = $("#inputPasswordEdit").val();
+                const role = $("#inputRoleEdit").val();
+                const school = $("#inputSchoolEdit").val();
+
+                $.ajax({
+                    url: "manage_user/updateUser.php",
+                    method:"post",
+                    data:{
+                        id : id,
+                        email : email,
+                        pass : pass,
+                        role : role,
+                        school : school
+                    },
+                    success(){
+                        $("#manageUserTbody").load("manage_user/manageUserTbody.php")
+                        // $("#manageUserTbody").html(e)
+                    }
+                })
+            })
+
+            // CONTACT
+            $("#contactBtnNav").click(function(){
+                $('#navBtn1').removeClass('active');
+                $('#navBtn2').removeClass('active');
+                $('#navBtn3').removeClass('active');
+                $('#navBtn4').addClass('active');
             })
         })
     </script>
