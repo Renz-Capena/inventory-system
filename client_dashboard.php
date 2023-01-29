@@ -30,6 +30,13 @@
     $list = $con->query($q);
     $numOfRow = $list->num_rows;
 
+    // GET USER INFO
+    $userId = $_SESSION['id'];
+
+    $getUserInfo = "SELECT * FROM users WHERE id='$userId'";
+    $userInfo = $con->query($getUserInfo);
+    $fetchUserInfo = $userInfo->fetch_assoc();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +55,7 @@
         <span><i class="fa-solid fa-user fs-4 mt-1" style="color: #1a1a1a"></i></span>
         <div class="dropdown">
             <a id="dropdownBtn" class="text-decoration-none dropdown-toggle ps-1" style="color: #1a1a1a" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            client
+            <?php echo $fetchUserInfo['email'] ?>
             </a>
 
             <ul class="dropdown-menu">
@@ -168,6 +175,13 @@
                     <input type="text" class="form-control" id="inputSourceOfFunds" placeholder="School Name">
                     <label>Source of Funds</label>
                 </div>
+
+                <label class='ps-1'>Status</label>
+                <select id='inputStatus' class="form-select" aria-label="Default select example">
+                    <option value="Working">Working</option>
+                    <option value="Condemned">Condemned</option>
+                    <option value="Need Repair">Need repair</option>
+                </select>
                 <!-- insert school name -->
                 <input type="hidden" id='insertSchoolName' value="<?php echo $_SESSION['school'] ?>">
                 <!--  -->
@@ -185,7 +199,7 @@
             // logout
             $('#dropdownBtn').click(function(){
                 
-                $('.dropdown-menu').addClass('d-block');
+                $('.dropdown-menu').toggleClass('d-block');
             })
 
             // NAV
@@ -210,6 +224,7 @@
                 const unitValue = $("#inputUnitValue").val();
                 const totalValue = $("#inputTotalValue").val();
                 const sourceOfFunds = $("#inputSourceOfFunds").val();
+                const status = $("#inputStatus").val();
 
                 if(code && article && description && date && unitValue && totalValue && sourceOfFunds){
                     $.ajax({
@@ -223,7 +238,8 @@
                             date : date,
                             unitValue : unitValue,
                             totalValue : totalValue,
-                            sourceOfFunds : sourceOfFunds
+                            sourceOfFunds : sourceOfFunds,
+                            status : status
                         },
                         success(){
 
@@ -332,6 +348,8 @@
                 const unitValue = $("#inputUnitValueEdit").val();
                 const totalValue = $("#inputTotalValueEdit").val();
                 const sourceOfFunds = $("#inputSourceOfFundsEdit").val();
+                const status = $("#inputStatusEdit").val();
+
 
                 if(code && article && description && date && unitValue && totalValue && sourceOfFunds){
                     $.ajax({
@@ -345,7 +363,8 @@
                             date : date,
                             unitValue : unitValue,
                             totalValue : totalValue,
-                            sourceOfFunds : sourceOfFunds
+                            sourceOfFunds : sourceOfFunds,
+                            status : status
                         },
                         success(){
                             // $("#dashBoardBody").html(e)
@@ -366,6 +385,8 @@
                                         $("#inputUnitValueEdit").val("")
                                         $("#inputTotalValueEdit").val("")
                                         $("#inputSourceOfFundsEdit").val("")
+                                        $("#inputStatusEdit").val("");
+
                                     }
                             })
                         }
@@ -391,14 +412,6 @@
                 })
             })
 
-
-            // CONTACT
-            $("#contactBtnNav").click(function(){
-                $('#navBtn1').removeClass('active');
-                $('#navBtn2').removeClass('active');
-                $('#navBtn3').removeClass('active');
-                $('#navBtn4').addClass('active');
-            })
         })
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

@@ -59,6 +59,7 @@
                 <th>Unit Value</th>
                 <th>Total Value</th>
                 <th>Source of Funds</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -74,6 +75,7 @@
                         <td><?php echo $fetch['unit_value'] ?></td>
                         <td><?php echo $fetch['total_value'] ?></td>
                         <td><?php echo $fetch['source_of_fund'] ?></td>
+                        <td><?php echo $fetch['status'] ?></td>
                         <td>
                            
                             <button type="button" class="btn btn-primary" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'>EDIT</button>

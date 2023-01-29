@@ -50,5 +50,13 @@
         <input type="text" class="form-control" value="<?php echo $fetch['source_of_fund'] ?>" id="inputSourceOfFundsEdit" placeholder="School Name">
         <label>Source of Funds</label>
     </div>
+
+    <label class='ps-1'>Status</label>
+    <select id='inputStatusEdit' class="form-select" aria-label="Default select example">
+        <option class='bg-primary' value="<?php echo $fetch['status'] ?>"><?php echo $fetch['status'] ?></option>
+        <option value="Working">Working</option>
+        <option value="Condemned">Condemned</option>
+        <option value="Need Repair">Need repair</option>
+    </select>
 </body>
 </html>

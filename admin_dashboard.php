@@ -2,6 +2,8 @@
     require "db.php";
     session_start();
 
+    $userId = $_SESSION['id'];
+
     if(empty($_SESSION['status']) || $_SESSION['status'] == 'invalid'){
 
         header("location: index.php");
@@ -19,6 +21,11 @@
 
         header("location: index.php");
     }
+
+    // GET USER INFO
+    $getUserInfo = "SELECT * FROM users WHERE id='$userId'";
+    $userInfo = $con->query($getUserInfo);
+    $fetchUserInfo = $userInfo->fetch_assoc();
 
     // =================FOR DASH BOARD COUNT
     // ADMIN
@@ -52,7 +59,7 @@
         <span><i class="fa-solid fa-user fs-4 mt-1" style="color: #1a1a1a"></i></span>
         <div class="dropdown">
             <a id="dropdownBtn" class="text-decoration-none dropdown-toggle ps-1" style="color: #1a1a1a" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Admin
+            <?php echo $fetchUserInfo['email'] ?>
             </a>
 
             <ul class="dropdown-menu">
@@ -258,6 +265,13 @@
                     <input type="text" class="form-control" id="inputSourceOfFunds" placeholder="School Name">
                     <label>Source of Funds</label>
                 </div>
+
+                <label class='ps-1'>Status</label>
+                <select id='inputStatus' class="form-select" aria-label="Default select example">
+                    <option value="Working">Working</option>
+                    <option value="Condemned">Condemned</option>
+                    <option value="Need Repair">Need repair</option>
+                </select>
                 <!-- insert school name -->
                 <input type="hidden" id='insertSchoolName'>
                 <!--  -->
@@ -479,8 +493,9 @@
                 const unitValue = $("#inputUnitValue").val();
                 const totalValue = $("#inputTotalValue").val();
                 const sourceOfFunds = $("#inputSourceOfFunds").val();
+                const status = $("#inputStatus").val();
 
-                if(code && article && description && date && unitValue && totalValue && sourceOfFunds){
+                if(code && article && description && date && unitValue && totalValue && sourceOfFunds && status){
                     $.ajax({
                         url:"schools_equipment/add_equipment.php",
                         method:'post',
@@ -492,7 +507,8 @@
                             date : date,
                             unitValue : unitValue,
                             totalValue : totalValue,
-                            sourceOfFunds : sourceOfFunds
+                            sourceOfFunds : sourceOfFunds,
+                            status : status
                         },
                         success(){
 
@@ -512,6 +528,7 @@
                                     $("#inputUnitValue").val("")
                                     $("#inputTotalValue").val("")
                                     $("#inputSourceOfFunds").val("")
+                                    $("#inputStatus").val("")
                                 }
                             })
 
@@ -601,6 +618,7 @@
                 const unitValue = $("#inputUnitValueEdit").val();
                 const totalValue = $("#inputTotalValueEdit").val();
                 const sourceOfFunds = $("#inputSourceOfFundsEdit").val();
+                const status = $("#inputStatusEdit").val();
 
                 if(code && article && description && date && unitValue && totalValue && sourceOfFunds){
                     $.ajax({
@@ -614,7 +632,8 @@
                             date : date,
                             unitValue : unitValue,
                             totalValue : totalValue,
-                            sourceOfFunds : sourceOfFunds
+                            sourceOfFunds : sourceOfFunds,
+                            status : status
                         },
                         success(){
                             // $("#dashBoardBody").html(e)
@@ -635,6 +654,7 @@
                                         $("#inputUnitValueEdit").val("")
                                         $("#inputTotalValueEdit").val("")
                                         $("#inputSourceOfFundsEdit").val("")
+                                        $("#inputStatusEdit").val("")
                                     }
                             })
                         }
