@@ -3,7 +3,7 @@
 
     $searchValue = $_POST['searchValue'];
 
-    $q = "SELECT * FROM schools WHERE id LIKE '%".$searchValue."%' OR school_name LIKE '%".$searchValue."%' OR address like '%".$searchValue."%' OR principal LIKE '%".$searchValue."%' OR contact LIKE '%".$searchValue."%'";
+    $q = "SELECT * FROM schools WHERE id LIKE '%$searchValue%' OR  school_name LIKE '%$searchValue%' OR school_id LIKE '%$searchValue%' OR division LIKE '%$searchValue%' OR school_type LIKE '%$searchValue%' OR  contact_person LIKE '%$searchValue%' OR  contact_no LIKE '%$searchValue%' OR email LIKE '%$searchValue%' OR  district LIKE '%$searchValue%' ";
 
     $list = $con->query($q);
     $fetch = $list->fetch_assoc();
@@ -22,9 +22,13 @@
         <tr>
             <td><?php echo $fetch['id'] ?></td>
             <td><?php echo $fetch['school_name'] ?></td>
-            <td><?php echo $fetch['address'] ?></td>
-            <td><?php echo $fetch['principal'] ?></td>
-            <td><?php echo $fetch['contact'] ?></td>
+            <td><?php echo $fetch['school_id'] ?></td>
+            <td><?php echo $fetch['division'] ?></td>
+            <td><?php echo $fetch['school_type'] ?></td>
+            <td><?php echo $fetch['contact_person'] ?></td>
+            <td><?php echo $fetch['contact_no'] ?></td>
+            <td><?php echo $fetch['email'] ?></td>
+            <td><?php echo $fetch['district'] ?></td>
             <td>
                 <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editSchool">EDIT</button>
                 <button class="btn btn-danger" id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
@@ -34,7 +38,7 @@
     <?php }while($fetch = $list->fetch_assoc()) ?>
 <?php }else{ ?>
     <tr>
-        <td colspan='6'>No data</td>
+        <td colspan='10'>No data</td>
     </tr>
 <?php } ?>
 </body>

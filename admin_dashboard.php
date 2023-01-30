@@ -63,7 +63,7 @@
             </a>
 
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li><a class="dropdown-item" href="#">
                 <form action="" method="post">
                     <input type="submit" class="btn btn-danger btn-sm mt-2" name="logoutBtn" value="LOGOUT">
@@ -77,7 +77,7 @@
         <div class='nav_wrapper'>
             <nav>
                 <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-light" style="width: 280px; height:100vh; ">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <img class="bi me-2" width="50" height="50" src="https://sdovalenzuelacity.deped.gov.ph/wp-content/uploads/2021/04/New-DO-Logo.png" alt="logo">
                     <span class="fs-4 text-light">Inventory System</span>
                     </a>
@@ -382,10 +382,7 @@
 
             // ADD SCHOOL
             $("#addSchoolBtn").click(function(){
-                // const schoolName = $("#inputSchoolName").val();
-                // const principal = $("#inputPrincipal").val();
-                // const address = $("#inputAddress").val();
-                // const contact = $("#inputContact").val();
+                
                 const schoolName = $("#inputSchoolName").val();
                 const schoolID = $("#inputSchoolID").val();
                 const contactPerson = $("#inputContactPerson").val();
@@ -495,21 +492,29 @@
             // EDIT SCHOOL SAVE BUTTON
             $("#saveEditSchoolBtn").click(function(){
 
-                const idEditSchool = $("#idEditSchool").val()
-                const schoolNameEdit = $("#inputSchoolNameEdit").val();
-                const principalEdit = $("#inputPrincipalEdit").val();
-                const addressEdit = $("#inputAddressEdit").val();
-                const contactEdit = $("#inputContactEdit").val();
+                const idEditSchool = $("#idEditSchool").val();
+                const schoolName = $("#inputSchoolNameEdit").val();
+                const schoolID = $("#inputSchoolIDEdit").val();
+                const contactPerson = $("#inputContactPersonEdit").val();
+                const contactNo = $("#inputContactNoEdit").val();
+                const email = $("#inputEmailEdit").val();
+                const division = $("#inputDivisionEdit").val();
+                const schoolType = $("#inputSchoolTypeEdit").val();
+                const district = $("#inputDistrictEdit").val();
 
                 $.ajax({
                     url:"updateSchool.php",
                     method:"post",
                     data:{
                         id : idEditSchool,
-                        schoolNameEdit : schoolNameEdit,
-                        principalEdit : principalEdit,
-                        addressEdit : addressEdit,
-                        contactEdit : contactEdit
+                        schoolName : schoolName,
+                        schoolID : schoolID,
+                        contactPerson : contactPerson,
+                        contactNo : contactNo,
+                        email : email,
+                        division : division,
+                        schoolType : schoolType,
+                        district : district
                     },
                     success(){
                         $('#dashBoardBody').load("table.php");

@@ -3,19 +3,9 @@
 
     $schoolName = $_POST['schoolName'];
     $search = $_POST['searchValue'];
-    // $search = ;
 
-    // $q = "SELECT * FROM equipment WHERE school='$schoolName' AND code LIKE '%".$search."%' OR article LIKE '%".$search."%' OR description LIKE '%".$search."%' OR date_acquired LIKE '%".$search."%' OR unit_value LIKE '%".$search."%' OR total_value LIKE '%".$search."%' OR source_of_fund LIKE '%".$search."%'   ";
-
-    // if($search){
-    //     $x = "OR article LIKE '%".$search."%' OR description LIKE '%".$search."%'";
-    //     $q = "SELECT * FROM equipment WHERE school='$schoolName' AND code LIKE '%". $search ."%' ".$x;
-    // }else{
-    //     $q = "SELECT * FROM equipment WHERE school='$schoolName'";
-    //     // $q = "SELECT * FROM equipment";
-    // }
     
-    $q = "SELECT * FROM equipment WHERE school = '$schoolName' AND ( code LIKE '%$search%' OR article LIKE '%$search%' OR description LIKE '%$search%' OR date_acquired LIKE '%$search%' OR unit_value LIKE '%$search%' OR total_value LIKE '%$search%' OR source_of_fund LIKE '%$search%' OR status LIKE '%$search%')";
+    $q = "SELECT * FROM equipment WHERE school = '$schoolName' AND ( id LIKE '%$search%' code LIKE '%$search%' OR article LIKE '%$search%' OR description LIKE '%$search%' OR date_acquired LIKE '%$search%' OR unit_value LIKE '%$search%' OR total_value LIKE '%$search%' OR source_of_fund LIKE '%$search%' OR status LIKE '%$search%')";
 
 
 
@@ -57,7 +47,7 @@
         <?php }while($fetch = $list->fetch_assoc()) ?>
     <?php }else{ ?>
         <tr>
-            <td colspan='9'>No Data</td>
+            <td colspan='10'>No Data</td>
         </tr>
     <?php } ?>
 
