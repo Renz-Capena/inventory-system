@@ -165,7 +165,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="form-floating mb-3">
+                <!-- <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="inputSchoolName" placeholder="School Name">
                     <label for="floatingInput">School Name</label>
                 </div>
@@ -180,7 +180,45 @@
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="inputContact" placeholder="Contact Number">
                     <label for="floatingInput">Contact Number</label>
+                </div> -->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inputSchoolName" placeholder="School Name">
+                    <label for="floatingInput">School Name</label>
                 </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inputSchoolID" placeholder="School ID">
+                    <label for="floatingInput">School ID</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inputContactPerson" placeholder="Contact Person">
+                    <label for="floatingInput">Contact Person</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inputContactNo" placeholder="Contact No">
+                    <label for="floatingInput">Contact No</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                    <label for="floatingInput">Email</label>
+                </div>
+                <label class='mt-2 mb-2 ps-2'>Division</label>
+                <select class="form-select" aria-label="Default select example" id='inputDivision'>
+                    <option value="DCS-Valenzuela">DCS-Valenzuela</option>
+                </select>
+                <label class='mt-3 mb-2 ps-2'>School Type</label>
+                <select class="form-select" aria-label="Default select example" id='inputSchoolType'>
+                    <option value="Public">Public</option>
+                    <option value="Private">Private</option>
+                </select>
+                <label class='mt-3 mb-2 ps-2'>District</label>
+                <select class="form-select" aria-label="Default select example" id='inputDistrict'>
+                    <option value="Congressional I">Congressional I</option>
+                    <option value="Congressional II">Congressional II</option>
+                    <option value="South">South</option>
+                    <option value="North">North</option>
+                    <option value="East">East</option>
+                    <option value="Central">Central</option>
+                </select>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -344,29 +382,47 @@
 
             // ADD SCHOOL
             $("#addSchoolBtn").click(function(){
+                // const schoolName = $("#inputSchoolName").val();
+                // const principal = $("#inputPrincipal").val();
+                // const address = $("#inputAddress").val();
+                // const contact = $("#inputContact").val();
                 const schoolName = $("#inputSchoolName").val();
-                const principal = $("#inputPrincipal").val();
-                const address = $("#inputAddress").val();
-                const contact = $("#inputContact").val();
+                const schoolID = $("#inputSchoolID").val();
+                const contactPerson = $("#inputContactPerson").val();
+                const contactNo = $("#inputContactNo").val();
+                const email = $("#inputEmail").val();
+                const division = $("#inputDivision").val();
+                const schoolType = $("#inputSchoolType").val();
+                const district = $("#inputDistrict").val();
 
-                if(schoolName && principal && address && contact){
+
+
+                if(schoolName && schoolID && contactPerson && contactNo && email && division && schoolType && district){
                     $.ajax({
                         url : "addSchool.php",
                         method : "post",
                         data : {
                             schoolName : schoolName,
-                            principal : principal,
-                            address : address,
-                            contact : contact
+                            schoolID : schoolID,
+                            contactPerson : contactPerson,
+                            contactNo : contactNo,
+                            email : email,
+                            division : division,
+                            schoolType : schoolType,
+                            district : district
                         },
                         success(){
                             $('#dashBoardBody').load("table.php");
                             // $('#dashBoardBody').html(e);
     
                             $("#inputSchoolName").val("");
-                            $("#inputPrincipal").val("");
-                            $("#inputAddress").val("");
-                            $("#inputContact").val("");
+                            $("#inputSchoolID").val("");
+                            $("#inputContactPerson").val("");
+                            $("#inputContactNo").val("");
+                            $("#inputEmail").val("");
+                            $("#inputDivision").val("");
+                            $("#inputSchoolType").val("");
+                            $("#inputDistrict").val("");
                         }
                     })
                 }else{
