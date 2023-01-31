@@ -862,6 +862,21 @@
                 })
             })
 
+            // SELECT DISTRICT
+            $("#dashBoardBody").on("change","#selectDisctrictFilter",function(){
+                const district = $(this).val();
+                $.ajax({
+                    url:"district.php",
+                    method:"post",
+                    data:{
+                        district : district
+                    },
+                    success(e){
+                        $("#idForSearchOutput").html(e)
+                    }
+                })
+            })
+
             // CONTACT
             $("#contactBtnNav").click(function(){
                 $('#navBtn1').removeClass('active');

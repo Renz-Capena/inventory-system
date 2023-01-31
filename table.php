@@ -20,12 +20,18 @@
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         <div class="d-flex align-items-center gap-4">
             <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addSchool">Add School</button>
-            <select class="form-select w-auto" aria-label="Default select example">
+            <select class="form-select w-auto" aria-label="Default select example" id='selectDisctrictFilter'>
                 <option selected>Select District</option>
-                <option value="North">North</option>
+                <!-- <option value="North">North</option>
                 <option value="South">South</option>
                 <option value="West">West</option>
+                <option value="East">East</option> -->
+                <option value="Congressional I">Congressional I</option>
+                <option value="Congressional II">Congressional II</option>
+                <option value="South">South</option>
+                <option value="North">North</option>
                 <option value="East">East</option>
+                <option value="Central">Central</option>
             </select>
         </div>
         <div class="d-flex align-items-center gap-2">
