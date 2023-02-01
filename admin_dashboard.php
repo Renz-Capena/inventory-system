@@ -362,6 +362,7 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <script>
         $(document).ready(function(){
             // logout
@@ -759,7 +760,7 @@
 
             // MANAGE USER (ADD USER BTN ON DB)
             $("#addUserDbBtn").click(function(){
-                const email = $("#inputEmail").val();
+                const email = $("#inputEmailUser").val();
                 const pass = $("#inputPassword").val();
                 const role = $("#inputRole").val();
                 const school = $("#inputSchool").val();
@@ -779,10 +780,10 @@
                         }
                     })
                 }else{
-                    $("#inputEmail").val("");
-                    $("#inputPassword").val("");
-
                     confirm("Please fill up all field!")
+                    
+                    $("#inputEmailUser").val("");
+                    $("#inputPassword").val("");
                 }
             })
 
@@ -824,7 +825,7 @@
             $("#updateUserManageUser").click(function(){
 
                 const id = $("#updateUserIdManageUser").val();
-                const email = $("#inputEmailEdit").val();
+                const email = $("#inputEmailUserEdit").val();
                 const pass = $("#inputPasswordEdit").val();
                 const role = $("#inputRoleEdit").val();
                 const school = $("#inputSchoolEdit").val();
@@ -884,10 +885,51 @@
                 $('#navBtn3').removeClass('active');
                 $('#navBtn4').addClass('active');
             })
+
+            // EXPORT TABLE
+            $("#dashBoardBody").on("click","#excelBtn",function(){
+                if (confirm("Export this table?")) {
+                    exportToExcel();
+                }
+            })
+
         })
+
+        function exportToExcel() {
+
+            const table = $("#tableToXLS");
+            const headers = [];
+            const rows = table.find("tr");
+            const data = [];
+
+            // Collect header data from table
+            table.find("th:not(:last-child)").each(function() {
+                headers.push($(this).text());
+            });
+
+            // Collect data from table, excluding the last column
+            rows.each(function() {
+                const row = [];
+                $(this).find("td:not(:last-child)").each(function() {
+                    row.push($(this).text());
+                });
+                data.push(row);
+            });
+
+            // Prepend header data to the data array
+            data.unshift(headers);
+
+            // Convert data to a workbook and export to XLSX
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+            XLSX.writeFile(wb, "ExportedTable.xlsx");
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <?php include 'footer.php' ?>
+
+
 </body>
 </html>

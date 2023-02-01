@@ -22,7 +22,7 @@
     <!--  -->
 
     <div class="form-floating mb-3">
-        <input type="email" class="form-control" value='<?php echo $fetchUserInfo['email'] ?>' id="inputEmailEdit" placeholder="name@example.com">
+        <input type="email" class="form-control" value='<?php echo $fetchUserInfo['email'] ?>' id="inputEmailUserEdit" placeholder="name@example.com">
         <label>Email</label>
     </div>
     <div class="form-floating mb-3">

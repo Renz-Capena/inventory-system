@@ -12,7 +12,7 @@
 <body>
 
     <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
+        <input type="email" class="form-control" id="inputEmailUser" placeholder="name@example.com">
         <label>Email</label>
     </div>
     <div class="form-floating mb-3">

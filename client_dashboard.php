@@ -194,6 +194,8 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
     <script>
         $(document).ready(function(){
             // logout
@@ -226,6 +228,8 @@
                 const sourceOfFunds = $("#inputSourceOfFunds").val();
                 const status = $("#inputStatus").val();
 
+                // console.log(code,article,description,date,unitValue,totalValue,sourceOfFunds)
+
                 if(code && article && description && date && unitValue && totalValue && sourceOfFunds){
                     $.ajax({
                         url:"schools_equipment/add_equipment.php",
@@ -252,13 +256,15 @@
                                 success(e){
                                     $("#equipmentTableTbody").html(e)
 
-                                    $("#inputCode").val("")
-                                    $("#inputArticle").val("")
-                                    $("#inputDescription").val("")
-                                    $("#inputDate").val("")
-                                    $("#inputUnitValue").val("")
-                                    $("#inputTotalValue").val("")
-                                    $("#inputSourceOfFunds").val("")
+                                    $("#inputCode").val("");
+                                    $("#inputArticle").val("");
+                                    $("#inputDescription").val("");
+                                    $("#inputDate").val("");
+                                    $("#inputUnitValue").val("");
+                                    $("#inputTotalValue").val("");
+                                    $("#inputSourceOfFunds").val("");
+                                    $("#inputStatus").val("");
+
                                 }
                             })
 
@@ -412,7 +418,43 @@
                 })
             })
 
+            $("#dashBoardBody").on("click","#excelBtn",function(){
+                if (confirm("Export this table?")) {
+                    exportToExcel();
+                }
+            })
         })
+
+        function exportToExcel() {
+
+            const table = $("#tableToXLS");
+            const headers = [];
+            const rows = table.find("tr");
+            const data = [];
+
+            // Collect header data from table
+            table.find("th:not(:last-child)").each(function() {
+                headers.push($(this).text());
+            });
+
+            // Collect data from table, excluding the last column
+            rows.each(function() {
+                const row = [];
+                $(this).find("td:not(:last-child)").each(function() {
+                    row.push($(this).text());
+                });
+                data.push(row);
+            });
+
+            // Prepend header data to the data array
+            data.unshift(headers);
+
+            // Convert data to a workbook and export to XLSX
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+            XLSX.writeFile(wb, "ExportedTable.xlsx");
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
