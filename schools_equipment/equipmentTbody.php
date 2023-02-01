@@ -45,7 +45,7 @@
         <?php }while($fetch = $list->fetch_assoc()) ?>
     <?php }else{ ?>
         <tr>
-            <td colspan='9'>No Data</td>
+            <td colspan='10'>No Data</td>
         </tr>
     <?php } ?>
 </body>

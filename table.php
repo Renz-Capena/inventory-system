@@ -20,6 +20,7 @@
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         <div class="d-flex align-items-center gap-4">
             <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addSchool">Add School</button>
+            <button id='excelBtn' class='btn btn-primary' style='width:300px'>Export To Excel</button>
             <select class="form-select w-auto" aria-label="Default select example" id='selectDisctrictFilter'>
                 <option selected>Select District</option>
                 <!-- <option value="North">North</option>
@@ -42,7 +43,7 @@
             </div>
         </div>
     </div>
-    <table class='table text-center table-striped'>
+    <table id='tableToXLS' class='table text-center table-striped'>
         <thead>
             <tr>
                 <th>Id</th>
@@ -85,7 +86,36 @@
         </tbody>
     </table>
     
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script>
+        const excelBtn = document.querySelector("#excelBtn");
 
+        excelBtn.addEventListener('click', function() {
+            if(confirm(`Export this table?`)){
+                exportToExcel();
+            }
+        });
 
+        function exportToExcel() {
+            const table = document.getElementById('tableToXLS');
+            const rows = table.rows;
+            const data = [];
+
+            // Collect data from table, excluding the last column
+            for (let i = 0; i < rows.length; i++) {
+                const row = [];
+                for (let j = 0; j < rows[i].cells.length - 1; j++) {
+                row.push(rows[i].cells[j].textContent);
+                }
+                data.push(row);
+            }
+
+            // Convert data to a workbook and export to XLSX
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+            XLSX.writeFile(wb, "ExportedTable.xlsx");
+        }
+    </script>
 </body>
 </html>

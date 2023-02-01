@@ -29,6 +29,8 @@
 
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button>
+        <button id='excelBtn' class="btn btn-primary w-auto">Export To Excel</button>
+
         <!-- <input type="text" id='searchBar' placeholder='Search Data'> -->
 
 
@@ -49,7 +51,7 @@
     <!--  -->
 
 
-    <table class='table text-center table-striped' placeholder='Search data'>
+    <table id='tableToXLS' class='table text-center table-striped' placeholder='Search data'>
         <thead>
             <tr>
                 <th>Item No.</th>
@@ -93,5 +95,38 @@
             <?php } ?>
         </tbody>
     </table>
+
+
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script>
+        const excelBtn = document.querySelector("#excelBtn");
+
+        excelBtn.addEventListener('click', function() {
+            if(confirm(`Export this table?`)){
+                exportToExcel();
+            }
+        });
+
+        function exportToExcel() {
+            const table = document.getElementById('tableToXLS');
+            const rows = table.rows;
+            const data = [];
+
+            // Collect data from table, excluding the last column
+            for (let i = 0; i < rows.length; i++) {
+                const row = [];
+                for (let j = 0; j < rows[i].cells.length - 1; j++) {
+                row.push(rows[i].cells[j].textContent);
+                }
+                data.push(row);
+            }
+
+            // Convert data to a workbook and export to XLSX
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+            XLSX.writeFile(wb, "ExportedTable.xlsx");
+        }
+    </script>
 </body>
 </html>
