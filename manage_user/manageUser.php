@@ -17,7 +17,7 @@
     <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Manage Users</div>
 
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
-        <button type="button" id='addUsersSchoolsModal' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserManageUser">Add User</button>
+        <button type="button" id='addUsersSchoolsModal' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserManageUser"><i class="fa-solid fa-plus pe-2"></i>Add User</button>
 
 
         <div class="d-flex align-items-center gap-2">
@@ -30,38 +30,40 @@
 
     </div>
 
-    <table class='table text-center'>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>EMAIL</th>
-                <th>PASSWORD</th>
-                <th>ROLE</th>
-                <th>SCHOOL</th>
-                <th>ACTION</th>
-            </tr>
-        </thead>
-        <tbody id='manageUserTbody'>
-            <?php if($list->num_rows){ ?>
-                <?php do{ ?>
-                    <tr>
-                        <td><?php echo $fetchUserInfo['id'] ?></td>
-                        <td><?php echo $fetchUserInfo['email'] ?></td>
-                        <td><?php echo $fetchUserInfo['pass'] ?></td>
-                        <td><?php echo $fetchUserInfo['role'] ?></td>
-                        <td><?php echo $fetchUserInfo['school'] ?></td>
-                        <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditUserManageUser" value='<?php echo $fetchUserInfo['id'] ?>' id='editUserManageUser'>EDIT</button>
-                            <button class='btn btn-danger' id='deleteUserManageUser' value='<?php echo $fetchUserInfo['id'] ?>' >DELETE</button>
-                        </td>
-                    </tr>
-                <?php }while($fetchUserInfo = $list->fetch_assoc()) ?>
-            <?php }else{ ?>
+    <div class="table-responsive" style="max-height: 480px;">
+        <table class='table text-center'>
+            <thead>
                 <tr>
-                    <td colspan='6'>No data</td>
+                    <th>ID</th>
+                    <th>EMAIL</th>
+                    <th>PASSWORD</th>
+                    <th>ROLE</th>
+                    <th>SCHOOL</th>
+                    <th>ACTION</th>
                 </tr>
-            <?php } ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody id='manageUserTbody'>
+                <?php if($list->num_rows){ ?>
+                    <?php do{ ?>
+                        <tr>
+                            <td><?php echo $fetchUserInfo['id'] ?></td>
+                            <td><?php echo $fetchUserInfo['email'] ?></td>
+                            <td><?php echo $fetchUserInfo['pass'] ?></td>
+                            <td><?php echo $fetchUserInfo['role'] ?></td>
+                            <td><?php echo $fetchUserInfo['school'] ?></td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditUserManageUser" value='<?php echo $fetchUserInfo['id'] ?>' id='editUserManageUser'>EDIT</button>
+                                <button class='btn btn-danger' id='deleteUserManageUser' value='<?php echo $fetchUserInfo['id'] ?>' >DELETE</button>
+                            </td>
+                        </tr>
+                    <?php }while($fetchUserInfo = $list->fetch_assoc()) ?>
+                <?php }else{ ?>
+                    <tr>
+                        <td colspan='6'>No data</td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

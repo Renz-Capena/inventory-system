@@ -54,11 +54,11 @@
     <link rel="stylesheet" href="css/admin_dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay;">
-    <header class="d-flex align-items-center py-2" style="background-color: white; position: absolute; top: 20px; right:20px; padding-inline: 72vw 15px;  border-radius: 10px;">
-        <span><i class="fa-solid fa-user fs-4 mt-1" style="color: #1a1a1a"></i></span>
+<body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay; ">
+    <header class="d-flex align-items-center py-2 bg-success text-light" style=" position: absolute; top: 20px; right:40px; padding-inline: 20px;  border-radius: 10px;">
+        <span><i class="fa-solid fa-user fs-4 mt-1"></i></span>
         <div class="dropdown">
-            <a id="dropdownBtn" class="text-decoration-none dropdown-toggle ps-1" style="color: #1a1a1a" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a id="dropdownBtn" class="text-decoration-none dropdown-toggle ps-1" style="color: #f5f5f5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $fetchUserInfo['email'] ?>
             </a>
 
@@ -73,14 +73,16 @@
         </div>
         </div>
     </header>
-    <div class='container-fluid m-0 p-0 m-0 flex-grow-1 d-flex'>
+    <div class='container-fluid m-0 p-0 flex-grow-1 d-flex'>
+    <!-- <span class="position-absolute" style="left: 300px; top: 30px;"><i id="menuBtn" class="fa-solid fa-bars text-dark fs-3"></i></span> -->
         <div class='nav_wrapper'>
             <nav>
-                <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-light" style="width: 280px; height:100vh; ">
-                    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-light" style="min-width: 280px; height:100vh; position-relative">
+                    <a href="admin_dashboard.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <img class="bi me-2" width="50" height="50" src="https://sdovalenzuelacity.deped.gov.ph/wp-content/uploads/2021/04/New-DO-Logo.png" alt="logo">
                     <span class="fs-4 text-light">Inventory System</span>
                     </a>
+                    <!-- lagyan mo id at tawagin mo addevent para lumabas or hindi ang navbar -->
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                     <li>
@@ -101,12 +103,12 @@
                         Manage Users
                         </a>
                     </li>
-                    <li id='contactBtnNav'>
+                    <!-- <li id='contactBtnNav'>
                         <a id='navBtn4' href="#" class="nav-link link-light">
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-phone"></i></span>
                         Contact
                         </a>
-                    </li>
+                    </li> -->
                     </ul>
                 </div>
                 <!-- <ul>
@@ -116,7 +118,7 @@
             </nav>
         </div>
     
-        <div id='dashBoardBody' class="mx-auto" style="width: 70%; margin-top: 110px;">
+        <div id='dashBoardBody' class="mx-auto w-75" style=" margin-top: 110px;">
             <!-- Ilagay dito ang dashboard -->
             <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Dashboard</div>
             <div class="d-flex py-5 px-5 text-light" style="gap: 100px; background-color: white;">
@@ -127,7 +129,7 @@
                         <hr>
                         <!-- Text -->
                         <p class="card-text">Number of People who have more control to the system.</p>
-                        <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
+                        <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
                     </div>
                 </div>
                 <div class="card w-100" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
@@ -137,7 +139,7 @@
                         <hr>
                         <!-- Text -->
                         <p class="card-text">Number of registered School.</p>
-                        <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
+                        <button id="toSchoolList" class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
                     </div>
                 </div>
                 <div class="card w-100" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
@@ -147,7 +149,7 @@
                         <hr>
                         <!-- Text -->
                         <p class="card-text">Number of registered users.</p>
-                        <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
+                        <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
                     </div>
                 </div>
             </div>
@@ -365,6 +367,18 @@
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <script>
         $(document).ready(function(){
+
+            // dashboard see more
+            $('.toManageUser').click(function(){
+                $('#dashBoardBody').load("manage_user/manageUser.php");
+
+            });
+
+            $('#toSchoolList').click(function(){
+                $('#dashBoardBody').load("table.php");
+
+            });
+
             // logout
             $('#dropdownBtn').click(function(){
                 
@@ -380,6 +394,12 @@
                 $('#navBtn3').removeClass('active');
                 $('#navBtn4').removeClass('active');
             })
+
+            // $('#menuBtn').click(function(){
+                
+            //     $('.nav_wrapper').toggleClass('translate');
+            //     $('#dashBoardBody').toggleClass('w-100');
+            // })
 
             // ADD SCHOOL
             $("#addSchoolBtn").click(function(){
@@ -927,7 +947,7 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>            <?php include 'footer.php' ?>
     <?php include 'footer.php' ?>
 
 

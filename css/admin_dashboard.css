@@ -7,8 +7,9 @@ ul{
 }
 .nav_wrapper{
     /* border: 1px solid red; */
-    width: fit-content;
+    /* width: fit-content; */
     /* min-height: 1000px; */
+    transition: all 0.6s ease;
 }
 .nav_wrapper li{
     /* border: 1px solid; */
@@ -20,3 +21,13 @@ ul{
     border: 1px solid red;
     display: flex;
 } */
+
+/* classlist */
+
+.translate{
+   transform: translateX(-100%);
+   display: none;
+}
+.widthChange{
+    width: 14%;
+}
