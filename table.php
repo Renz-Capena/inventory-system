@@ -14,13 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-    <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">School List</div>
+    <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Registered School</div>
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         <div class="d-flex align-items-center gap-4">
-            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addSchool">Add School</button>
-            <button id='excelBtn' class='btn btn-primary' style='width:300px'>Export To Excel</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSchool"><i class="fa-solid fa-plus pe-2"></i>Add School</button>
             <select class="form-select w-auto" aria-label="Default select example" id='selectDisctrictFilter'>
                 <option selected>Select District</option>
                 <!-- <option value="North">North</option>
@@ -35,58 +35,60 @@
                 <option value="Central">Central</option>
             </select>
         </div>
-        <div class="d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-4">
+        <button id='excelBtn' class='btn btn-success w-100 px-1'><i class="fa-solid fa-file-arrow-down pe-2"></i>Export To Excel</button>
             <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" type="text" placeholder='Search Data'
             aria-label="Search">
-            <div style="position: absolute; top: 10px; right: 180px; z-index: 1;">
+            <div style="position: absolute; top: 10px; right: 153px; z-index: 1;">
                 <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
             </div>
         </div>
     </div>
-    <table id='tableToXLS' class='table text-center table-striped'>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>School Name</th>
-                <th>School ID</th>
-                <th>Division</th>
-                <th>School type</th>
-                <th>Contact Person</th>
-                <th>Contact No.</th>
-                <th>Email</th>
-                <th>District</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="idForSearchOutput">
-            <?php if($list->num_rows){ ?>
-                <?php do{ ?>
-                    <tr>
-                        <td><?php echo $fetch['id'] ?></td>
-                        <td><?php echo $fetch['school_name'] ?></td>
-                        <td><?php echo $fetch['school_id'] ?></td>
-                        <td><?php echo $fetch['division'] ?></td>
-                        <td><?php echo $fetch['school_type'] ?></td>
-                        <td><?php echo $fetch['contact_person'] ?></td>
-                        <td><?php echo $fetch['contact_no'] ?></td>
-                        <td><?php echo $fetch['email'] ?></td>
-                        <td><?php echo $fetch['district'] ?></td>
-                        <td>
-                            <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editSchool">EDIT</button>
-                            <button class="btn btn-danger" id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
-                            <button class="btn btn-success" id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
-                        </td>
-                    </tr>
-                <?php }while($fetch = $list->fetch_assoc()) ?>
-            <?php }else{ ?>
+    <div class="table-responsive md" style="max-height: 480px;">
+        <table id='tableToXLS' class='table text-center table-striped'>
+            <thead>
                 <tr>
-                    <td colspan='10'>No data</td>
+                    <th>Id</th>
+                    <th>School Name</th>
+                    <th>School ID</th>
+                    <th>Division</th>
+                    <th>School type</th>
+                    <th>Contact Person</th>
+                    <th>Contact No.</th>
+                    <th>Email</th>
+                    <th>District</th>
+                    <th colspan='3'>Action</th>
                 </tr>
-            <?php } ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody id="idForSearchOutput">
+                <?php if($list->num_rows){ ?>
+                    <?php do{ ?>
+                        <tr>
+                            <td><?php echo $fetch['id'] ?></td>
+                            <td><?php echo $fetch['school_name'] ?></td>
+                            <td><?php echo $fetch['school_id'] ?></td>
+                            <td><?php echo $fetch['division'] ?></td>
+                            <td><?php echo $fetch['school_type'] ?></td>
+                            <td><?php echo $fetch['contact_person'] ?></td>
+                            <td><?php echo $fetch['contact_no'] ?></td>
+                            <td><?php echo $fetch['email'] ?></td>
+                            <td><?php echo $fetch['district'] ?></td>
+                            <td>
+                                <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editSchool">EDIT</button>
+                                <button class="btn btn-danger btn-sm" id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
+                                <button class="btn btn-success btn-sm" id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
+                            </td>
+                        </tr>
+                    <?php }while($fetch = $list->fetch_assoc()) ?>
+                <?php }else{ ?>
+                    <tr>
+                        <td colspan='10'>No data</td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
     
-    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <script>
         const excelBtn = document.querySelector("#excelBtn");
 

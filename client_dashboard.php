@@ -51,24 +51,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay;">
-    <header class="d-flex align-items-center py-2" style="background-color: white; position: absolute; top: 20px; right:20px; padding-inline: 72vw 15px;  border-radius: 10px;">
-        <span><i class="fa-solid fa-user fs-4 mt-1" style="color: #1a1a1a"></i></span>
-        <div class="dropdown">
-            <a id="dropdownBtn" class="text-decoration-none dropdown-toggle ps-1" style="color: #1a1a1a" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <?php echo $fetchUserInfo['email'] ?>
-            </a>
+    <header class="d-flex align-items-center py-2 bg-success text-light" style=" position: absolute; top: 20px; right:40px; padding-inline: 20px;  border-radius: 10px;">
+            <span><i class="fa-solid fa-user fs-4 mt-1"></i></span>
+            <div class="dropdown">
+                <a id="dropdownBtn" class="text-decoration-none dropdown-toggle ps-1" style="color: #f5f5f5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php echo $fetchUserInfo['email'] ?>
+                </a>
 
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                <li><a class="dropdown-item" href="#">
-                <form action="" method="post">
-                    <input type="submit" class="btn btn-danger btn-sm mt-2" name="logoutBtn" value="LOGOUT">
-                </form>
-                </a></li>
-            </ul>
-        </div>
-        </div>
-    </header>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">
+                    <form action="" method="post">
+                        <input type="submit" class="btn btn-danger btn-sm mt-2" name="logoutBtn" value="LOGOUT">
+                    </form>
+                    </a></li>
+                </ul>
+            </div>
+            </div>
+        </header>
     <div class='container-fluid m-0 p-0 m-0 flex-grow-1 d-flex'>
         <div class='nav_wrapper'>
             <nav>
@@ -111,7 +111,7 @@
                         <hr>
                         <!-- Text -->
                         <p class="card-text">Count of all the equipment that you borrowed will appear here.</p>
-                        <button class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See List<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
+                        <button id="toEquipment" class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See List<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
                     </div>
                 </div>
             </div>
@@ -201,6 +201,11 @@
                 
                 $('.dropdown-menu').toggleClass('d-block');
             })
+
+            $('#toEquipment').click(function(){
+                $('#dashBoardBody').load("clientEquipment.php");
+
+            });
 
             // NAV
             $('#equipmentListBtn').click(function(){

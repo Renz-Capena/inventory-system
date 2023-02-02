@@ -55,7 +55,7 @@
     <link rel="stylesheet" href="css/index.css">
     <title>Login</title>
 </head>
-<body style="background: url(img/sdo-logo.png) no-repeat; background-color: #f5f5f5; background-size: cover;">
+<body style="background: url(img/sdo-logo.png) no-repeat; background-color: #ededed;">
     <!-- <form method='post'>
         <input type="text" name='email'>
         <input type="pass" name='pass'>
