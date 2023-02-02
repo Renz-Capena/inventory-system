@@ -63,7 +63,7 @@
             </a>
 
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li id="profileBtn" value='<?php echo $fetchUserInfo['id'] ?>' ><button class="dropdown-item"  >Profile</button></li>
                 <li><a class="dropdown-item" href="#">
                 <form action="" method="post">
                     <input type="submit" class="btn btn-danger btn-sm mt-2" name="logoutBtn" value="LOGOUT">
@@ -904,6 +904,58 @@
                 $('#navBtn2').removeClass('active');
                 $('#navBtn3').removeClass('active');
                 $('#navBtn4').addClass('active');
+            })
+
+            // PROFILE BUTTON
+            $("#profileBtn").click(function(){
+                const userId = $(this).val()
+
+                $.ajax({
+                    url:"profile.php",
+                    method:"post",
+                    data:{
+                        id : userId
+                    },
+                    success(e){
+                        $("#dashBoardBody").html(e)
+                    }
+                })
+            })
+
+            // PROFIE (UPDATE BUTTON)
+            $("#dashBoardBody").on("click","#updateUserInfoProfile",function(){
+                const id = $("#profileUserId").val()
+                const newPass = $("#profileNewPassword").val();
+                const retypePass = $("#profileNewpassValidation").val()
+
+                // alert(id)
+                
+                if(newPass && retypePass){
+
+                    if(newPass == retypePass){
+                    
+                        $.ajax({
+                            url:"profileUpdate.php",
+                            method:"post",
+                            data:{
+                                id:id,
+                                newPass:newPass
+                            },
+                            success(e){
+                                $("#dashBoardBody").html(e)
+                            }
+                        })
+
+                        // alert(newPass)
+
+                    }else{
+                        $("#profileNewPassword").val("");
+                        $("#profileNewpassValidation").val("")
+
+                        confirm('Your password is not match!')
+                    }
+                }
+                
             })
 
             // EXPORT TABLE

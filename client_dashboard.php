@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay;">
+
     <header class="d-flex align-items-center py-2 bg-success text-light" style=" position: absolute; top: 20px; right:40px; padding-inline: 20px;  border-radius: 10px;">
             <span><i class="fa-solid fa-user fs-4 mt-1"></i></span>
             <div class="dropdown">
@@ -59,7 +60,7 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li id="profileBtn" value='<?php echo $fetchUserInfo['id'] ?>' ><button class="dropdown-item"  >Profile</button></li>
                     <li><a class="dropdown-item" href="#">
                     <form action="" method="post">
                         <input type="submit" class="btn btn-danger btn-sm mt-2" name="logoutBtn" value="LOGOUT">
@@ -69,6 +70,7 @@
             </div>
             </div>
         </header>
+
     <div class='container-fluid m-0 p-0 m-0 flex-grow-1 d-flex'>
         <div class='nav_wrapper'>
             <nav>
@@ -423,6 +425,60 @@
                 })
             })
 
+            // PROFILE BUTTON
+            $("#profileBtn").click(function(){
+                const userId = $(this).val()
+
+                $.ajax({
+                    url:"profile.php",
+                    method:"post",
+                    data:{
+                        id : userId
+                    },
+                    success(e){
+                        $("#dashBoardBody").html(e)
+                    }
+                })
+            })
+
+            // PROFIE (UPDATE BUTTON)
+            $("#dashBoardBody").on("click","#updateUserInfoProfile",function(){
+                const id = $("#profileUserId").val()
+                const newPass = $("#profileNewPassword").val();
+                const retypePass = $("#profileNewpassValidation").val()
+
+                // alert(id)
+                
+                if(newPass && retypePass){
+
+                    if(newPass == retypePass){
+                    
+                        $.ajax({
+                            url:"profileUpdate.php",
+                            method:"post",
+                            data:{
+                                id:id,
+                                newPass:newPass
+                            },
+                            success(e){
+                                $("#dashBoardBody").html(e)
+                            }
+                        })
+
+                        // alert(newPass)
+
+                    }else{
+                        $("#profileNewPassword").val("");
+                        $("#profileNewpassValidation").val("")
+
+                        confirm('Your password is not match!')
+                    }
+                }
+                
+            })
+
+
+            // EXPORT TO EXCEL  BUTTON
             $("#dashBoardBody").on("click","#excelBtn",function(){
                 if (confirm("Export this table?")) {
                     exportToExcel();
