@@ -101,35 +101,6 @@
 
         });
     </script>
-    <script>
-        const excelBtn = document.querySelector("#excelBtn");
 
-        excelBtn.addEventListener('click', function() {
-            if(confirm(`Export this table?`)){
-                exportToExcel();
-            }
-        });
-
-        function exportToExcel() {
-            const table = document.getElementById('tableToXLS');
-            const rows = table.rows;
-            const data = [];
-
-            // Collect data from table, excluding the last column
-            for (let i = 0; i < rows.length; i++) {
-                const row = [];
-                for (let j = 0; j < rows[i].cells.length - 1; j++) {
-                row.push(rows[i].cells[j].textContent);
-                }
-                data.push(row);
-            }
-
-            // Convert data to a workbook and export to XLSX
-            const wb = XLSX.utils.book_new();
-            const ws = XLSX.utils.aoa_to_sheet(data);
-            XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-            XLSX.writeFile(wb, "ExportedTable.xlsx");
-        }
-    </script>
 </body>
 </html>
