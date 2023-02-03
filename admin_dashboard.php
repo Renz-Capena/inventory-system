@@ -63,7 +63,7 @@
             </a>
 
             <ul class="dropdown-menu">
-                <li id="profileBtn" value='<?php echo $fetchUserInfo['id'] ?>' ><button class="dropdown-item"  >Profile</button></li>
+                <li id="profileBtn" value='<?php echo $fetchUserInfo['id'] ?>' ><button class="dropdown-item mb-2">My Profile</button></li>
                 <li><a class="dropdown-item" href="#">
                 <form action="" method="post">
                     <input type="submit" class="btn btn-danger btn-sm mt-2" name="logoutBtn" value="LOGOUT">
@@ -109,6 +109,7 @@
                         Contact
                         </a>
                     </li> -->
+                    <!-- <?php echo date ('d-m-y h:i:s'); ?> -->
                     </ul>
                 </div>
                 <!-- <ul>
@@ -118,10 +119,10 @@
             </nav>
         </div>
     
-        <div id='dashBoardBody' class="mx-auto w-75" style=" margin-top: 110px;">
+        <div id='dashBoardBody' class="mx-auto w-75" style=" margin-top: 100px;">
             <!-- Ilagay dito ang dashboard -->
             <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Dashboard</div>
-            <div class="d-flex py-5 px-5 text-light" style="gap: 100px; background-color: white;">
+            <div class="d-flex py-5 px-5 text-light" style="gap: 70px; background-color: white;">
                 <div class="card w-100" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
                     <div class="card-body bg-primary rounded-1">
                         <!-- Title -->
@@ -359,6 +360,26 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='updateUserManageUser'>Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- paturo ka kay renz dito -->
+
+    <div class="modal fade" id="EditUserProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id='profileModalBody' class="modal-body">
+                <!-- Get data from another index -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='profileUpdateBtnDatabase' data-bs-dismiss="modal">Save changes</button>
             </div>
             </div>
         </div>
@@ -908,6 +929,7 @@
 
             // PROFILE BUTTON
             $("#profileBtn").click(function(){
+                $('.dropdown-menu').toggleClass('d-block');
                 const userId = $(this).val()
 
                 $.ajax({
@@ -923,39 +945,62 @@
             })
 
             // PROFIE (UPDATE BUTTON)
-            $("#dashBoardBody").on("click","#updateUserInfoProfile",function(){
-                const id = $("#profileUserId").val()
-                const newPass = $("#profileNewPassword").val();
-                const retypePass = $("#profileNewpassValidation").val()
+            $("#dashBoardBody").on("click","#editProfileBtnDb",function(){
+                const id = $(this).val();
 
-                // alert(id)
-                
-                if(newPass && retypePass){
+                $.ajax({
+                    url:"profileUpdateModal.php",
+                    method:"post",
+                    data:{
+                        id:id
+                    },
+                    success(e){
+                        $("#profileModalBody").html(e)
+                    }
+                })
+            })
 
-                    if(newPass == retypePass){
+            // PROFILE UPDATE (DATABASE)
+            $("#profileUpdateBtnDatabase").click(function(){
+                const id = $("#profileId").val();
+                const email = $("#profileEmailModal").val();
+                const newPass = $("#profileNewPassModal").val();
+                const reTypePass = $("#ProfileRetypePassModal").val();
+
+                if(email && newPass && reTypePass){
                     
+                    if(newPass === reTypePass){
+                        
                         $.ajax({
-                            url:"profileUpdate.php",
+                            url:"profileUpdateDb.php",
                             method:"post",
                             data:{
                                 id:id,
-                                newPass:newPass
+                                email : email,
+                                newPass : newPass
                             },
-                            success(e){
-                                $("#dashBoardBody").html(e)
+                            success(){
+
+                                $.ajax({
+                                    url:"profile.php",
+                                    method:"post",
+                                    data:{
+                                        id : id
+                                    },
+                                    success(e){
+                                        $("#dashBoardBody").html(e)
+                                    }
+                                })
                             }
                         })
 
-                        // alert(newPass)
-
                     }else{
-                        $("#profileNewPassword").val("");
-                        $("#profileNewpassValidation").val("")
-
-                        confirm('Your password is not match!')
+                        confirm('Password not match')
                     }
+
+                }else{
+                    confirm('Please fill up all field!')
                 }
-                
             })
 
             // EXPORT TABLE

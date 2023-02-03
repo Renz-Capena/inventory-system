@@ -23,10 +23,6 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSchool"><i class="fa-solid fa-plus pe-2"></i>Add School</button>
             <select class="form-select w-auto" aria-label="Default select example" id='selectDisctrictFilter'>
                 <option selected>Select District</option>
-                <!-- <option value="North">North</option>
-                <option value="South">South</option>
-                <option value="West">West</option>
-                <option value="East">East</option> -->
                 <option value="Congressional I">Congressional I</option>
                 <option value="Congressional II">Congressional II</option>
                 <option value="South">South</option>
@@ -36,7 +32,7 @@
             </select>
         </div>
         <div class="d-flex align-items-center gap-4">
-        <button id='excelBtn' class='btn btn-success w-100 px-1'><i class="fa-solid fa-file-arrow-down pe-2"></i>Export To Excel</button>
+        <button id='excelBtn' class='btn btn-success w-100 px-1'><i class="fa-solid fa-file-arrow-down pe-2"></i>Download Excel</button>
             <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" type="text" placeholder='Search Data'
             aria-label="Search">
             <div style="position: absolute; top: 10px; right: 153px; z-index: 1;">
@@ -75,9 +71,9 @@
                             <td><?php echo $fetch['email'] ?></td>
                             <td><?php echo $fetch['district'] ?></td>
                             <td>
-                                <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editSchool">EDIT</button>
-                                <button class="btn btn-danger btn-sm" id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
-                                <button class="btn btn-success btn-sm" id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
+                                <button title="edit" type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editSchool"><i class="fa-solid fa-pen"></i></button>
+                                <button class="btn btn-danger btn-sm" id='deleteBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button>
+                                <button class="btn btn-success btn-sm" id="viewBtn" value='<?php echo $fetch['school_name'] ?>'><i class="fa-solid fa-eye"></i></button>
                             </td>
                         </tr>
                     <?php }while($fetch = $list->fetch_assoc()) ?>
