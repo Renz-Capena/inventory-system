@@ -196,6 +196,25 @@
         </div>
     </div>
 
+    <div class="modal fade" id="EditUserProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id='profileModalBody' class="modal-body">
+                <!-- Get data from another index -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='profileUpdateBtnDatabase' data-bs-dismiss="modal">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
     <script>
@@ -427,6 +446,7 @@
 
             // PROFILE BUTTON
             $("#profileBtn").click(function(){
+                $('.dropdown-menu').toggleClass('d-block');
                 const userId = $(this).val()
 
                 $.ajax({
@@ -475,6 +495,66 @@
                     }
                 }
                 
+            })
+
+
+            // PROFIE (UPDATE BUTTON)
+            $("#dashBoardBody").on("click","#editProfileBtnDb",function(){
+                const id = $(this).val();
+
+                $.ajax({
+                    url:"profileUpdateModal.php",
+                    method:"post",
+                    data:{
+                        id:id
+                    },
+                    success(e){
+                        $("#profileModalBody").html(e)
+                    }
+                })
+            })
+
+            // PROFILE UPDATE (DATABASE)
+            $("#profileUpdateBtnDatabase").click(function(){
+                const id = $("#profileId").val();
+                const email = $("#profileEmailModal").val();
+                const newPass = $("#profileNewPassModal").val();
+                const reTypePass = $("#ProfileRetypePassModal").val();
+
+                if(email && newPass && reTypePass){
+                    
+                    if(newPass === reTypePass){
+                        
+                        $.ajax({
+                            url:"profileUpdateDb.php",
+                            method:"post",
+                            data:{
+                                id:id,
+                                email : email,
+                                newPass : newPass
+                            },
+                            success(){
+
+                                $.ajax({
+                                    url:"profile.php",
+                                    method:"post",
+                                    data:{
+                                        id : id
+                                    },
+                                    success(e){
+                                        $("#dashBoardBody").html(e)
+                                    }
+                                })
+                            }
+                        })
+
+                    }else{
+                        confirm('Password not match')
+                    }
+
+                }else{
+                    confirm('Please fill up all field!')
+                }
             })
 
 
