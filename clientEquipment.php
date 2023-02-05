@@ -21,25 +21,25 @@
 </head>
 <body>
     <!-- <h1 class="text-center"><?php echo strtoupper($school) ?></h1> -->
-    <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3"><?php echo ucwords($school) ?></div>
+    <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-75 h3"><?php echo ucwords($school) ?></div>
     <!-- <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">Add Equipment</button> -->
 
 
 
 
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEquipmentModal"><i class="fa-solid fa-plus pe-2"></i>Add Equipment</button>
-        <button id='excelBtn' class="btn btn-success w-auto"><i class="fa-solid fa-file-arrow-down pe-2"></i>Export To Excel</button>
-
-        <!-- <input type="text" id='searchBar' placeholder='Search Data'> -->
-
-
+        
         <div class="d-flex align-items-center gap-2">
             <input id='searchEquipmentInput' class="form-control form-control-sm fs-17 py-2 ps-5" type="text" placeholder='Search Data'
             aria-label="Search">
-            <div style="position: absolute; top: 10px; right: 180px; z-index: 1;">
+            <div style="position: absolute; top: 8px; left: 15px; z-index: 1;">
                 <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
             </div>
+        </div>
+
+        <div class="d-flex gap-3">
+            <button id='excelBtn' class="btn btn-success w-auto"><i class="fa-solid fa-file-arrow-down pe-2"></i>Download Excel</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEquipmentModal"><i class="fa-solid fa-plus pe-2"></i>Add Equipment</button>
         </div>
 
     </div>
@@ -82,8 +82,8 @@
                             <td><?php echo $fetch['status'] ?></td>
                             <td>
         
-                                <button type="button" class="btn btn-primary" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'>EDIT</button>
-                                <button class="btn btn-danger" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
+                                <button type="button" class="btn btn-primary btn-sm" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'><i class="fa-solid fa-pen"></i></button>
+                                <button class="btn btn-danger btn-sm" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
                     <?php }while($fetch = $list->fetch_assoc()) ?>

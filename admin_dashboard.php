@@ -41,6 +41,18 @@
     $listSchool = $con->query($countSchool);
     $schoolCount = $listSchool->num_rows;
 
+
+    // date_default_timezone_set('Asia/Manila');
+    // $todays_date = date("y-m-d h:i:sa");
+    // $today = strtotime($todays_date);
+    // echo "<br>";echo "<br>";
+    // echo "Current time ";
+    // echo "<br>";
+
+
+    // echo date("Y-m-d h:i:sa", $today);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

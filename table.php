@@ -20,7 +20,12 @@
     <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Registered School</div>
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         <div class="d-flex align-items-center gap-4">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSchool"><i class="fa-solid fa-plus pe-2"></i>Add School</button>
+            <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" type="text" placeholder='Search Data'
+            aria-label="Search">
+            <div style="position: absolute; top: 8px; left: 15px; z-index: 1;">
+                <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
+            </div>
+
             <select class="form-select w-auto" aria-label="Default select example" id='selectDisctrictFilter'>
                 <option selected>Select District</option>
                 <option value="Congressional I">Congressional I</option>
@@ -31,13 +36,9 @@
                 <option value="Central">Central</option>
             </select>
         </div>
-        <div class="d-flex align-items-center gap-4">
-        <button id='excelBtn' class='btn btn-success w-100 px-1'><i class="fa-solid fa-file-arrow-down pe-2"></i>Download Excel</button>
-            <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" type="text" placeholder='Search Data'
-            aria-label="Search">
-            <div style="position: absolute; top: 10px; right: 153px; z-index: 1;">
-                <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
-            </div>
+        <div class="d-flex gap-3">
+            <button id='excelBtn' class='btn btn-success '><i class="fa-solid fa-file-arrow-down pe-2"></i>Download Excel</button>
+            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#addSchool"><i class="fa-solid fa-plus pe-2"></i>Add School</button>
         </div>
     </div>
     <div class="table-responsive md" style="max-height: 480px;">
@@ -70,7 +71,7 @@
                             <td><?php echo $fetch['contact_no'] ?></td>
                             <td><?php echo $fetch['email'] ?></td>
                             <td><?php echo $fetch['district'] ?></td>
-                            <td>
+                            <td style="width: 120px">
                                 <button title="edit" type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editSchool"><i class="fa-solid fa-pen"></i></button>
                                 <button class="btn btn-danger btn-sm" id='deleteBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button>
                                 <button class="btn btn-success btn-sm" id="viewBtn" value='<?php echo $fetch['school_name'] ?>'><i class="fa-solid fa-eye"></i></button>

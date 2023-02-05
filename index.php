@@ -55,14 +55,14 @@
     <link rel="stylesheet" href="css/index.css">
     <title>Login</title>
 </head>
-<body style="background: url(img/bannerweb.png) no-repeat; background-size: cover; background-attachment: center; background-color: #ededed;">
+<body style="background: url(img/bannerweb.png) no-repeat; background-size: cover; background-position: center; height: 100vh">
     <!-- <form method='post'>
         <input type="text" name='email'>
         <input type="pass" name='pass'>
         <button name='loginBtn'>LOGIN</button>
     </form> -->
-    <div class="login">
-    <h1 class="text-center mb-5" style="letter-spacing: 4px;">LOGIN</h1>
+    <div class="login" style="background-color: rgba(0,0,0,0.6)">
+    <h1 class="text-center mb-5 fw-bold text-light" style="letter-spacing: 4px;">LOGIN</h1>
         <form method="post">
             <div class="d-flex">
                 <span><i class="fas fa-user"></i></span>
