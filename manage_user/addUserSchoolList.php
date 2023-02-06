@@ -23,8 +23,8 @@
 
     <label class='my-2'>Role</label>
     <select id='inputRole' class="form-select" aria-label="Default select example">
-        <option value="client">Client</option>
-        <option value="admin">Admin</option>
+        <option value="Client">Client</option>
+        <option value="Admin">Admin</option>
     </select>
 
 

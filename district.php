@@ -3,7 +3,12 @@
 
     $district = $_POST['district'];
 
-    $q = "SELECT * FROM `schools` WHERE district='$district'";
+    if($district == "Default"){
+        $q = "SELECT * FROM `schools`";
+    }else{
+        $q = "SELECT * FROM `schools` WHERE district='$district'";
+    }
+
 
     $list = $con->query($q);
     $fetch = $list->fetch_assoc();

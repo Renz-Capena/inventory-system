@@ -1015,6 +1015,22 @@
                 }
             })
 
+            // SELECTED ROLE
+            $("#dashBoardBody").on("change","#selectedRole",function(){
+                const role = $(this).val();
+
+                $.ajax({
+                    url:"selectedRole.php",
+                    method:"post",
+                    data:{
+                        role:role
+                    },
+                    success(e){
+                        $("#manageUserTbody").html(e)
+                    }
+                })
+            })
+
             // EXPORT TABLE
             $("#dashBoardBody").on("click","#excelBtn",function(){
                 if (confirm("Export this table?")) {

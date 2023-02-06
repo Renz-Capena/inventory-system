@@ -32,7 +32,7 @@
             $_SESSION['status'] = $info['role'];
 
 
-            if($info['role'] == 'admin'){
+            if($info['role'] == 'Admin'){
                 header("location: admin_dashboard.php");
             }else{
                 header("location: client_dashboard.php");
