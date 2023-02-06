@@ -29,10 +29,10 @@
                 <td><?php echo $fetch['contact_no'] ?></td>
                 <td><?php echo $fetch['email'] ?></td>
                 <td><?php echo $fetch['district'] ?></td>
-                <td>
-                    <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editSchool">EDIT</button>
-                    <button class="btn btn-danger" id='deleteBtn' value='<?php echo $fetch['id'] ?>'>DELETE</button>
-                    <button class="btn btn-success" id="viewBtn" value='<?php echo $fetch['school_name'] ?>'>VIEW</button>
+                <td style="width: 120px">
+                    <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editSchool"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-danger btn-sm" id='deleteBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-success btn-sm" id="viewBtn" value='<?php echo $fetch['school_name'] ?>'><i class="fa-solid fa-eye"></i></button>
                 </td>
             </tr>
         <?php }while($fetch = $list->fetch_assoc()) ?>
