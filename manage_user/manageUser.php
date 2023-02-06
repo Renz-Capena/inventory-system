@@ -29,6 +29,12 @@
 
         <button type="button" id='addUsersSchoolsModal' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserManageUser"><i class="fa-solid fa-plus pe-2"></i>Add User</button>
 
+        <select id='selectedRole' class="form-select w-25" aria-label="Default select example">
+            <option value='Default'>Select Role</option>
+            <option value="Admin">Admin</option>
+            <option value="CLient">Client</option>
+        </select>
+
     </div>
 
     <div class="table-responsive" style="max-height: 480px;">

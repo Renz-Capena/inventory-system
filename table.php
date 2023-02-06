@@ -27,7 +27,7 @@
             </div>
 
             <select class="form-select w-auto" aria-label="Default select example" id='selectDisctrictFilter'>
-                <option selected>Select District</option>
+                <option value="Default">Select District</option>
                 <option value="Congressional I">Congressional I</option>
                 <option value="Congressional II">Congressional II</option>
                 <option value="South">South</option>
