@@ -20,7 +20,7 @@
     <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Registered School</div>
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         <div class="d-flex align-items-center gap-4">
-            <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" style="background-color: lightgrey" type="text" placeholder='Search School'
+            <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" style="background-color: #e7fb57" type="text" placeholder='Search School'
             aria-label="Search">
             <div style="position: absolute; top: 8px; left: 15px; z-index: 1;">
                 <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
