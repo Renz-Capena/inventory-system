@@ -20,7 +20,7 @@
         
         
         <div class="d-flex align-items-center gap-2">
-            <input id='searchUserDb' class="form-control form-control-sm fs-17 py-2 ps-5" type="text" placeholder='Search User'
+            <input id='searchUserDb' class="form-control form-control-sm fs-17 py-2 ps-5" style="background-color: lightgrey" type="text" placeholder='Search User'
             aria-label="Search">
             <div style="position: absolute; top: 8px; left: 15px; z-index: 1;">
                 <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
@@ -59,8 +59,8 @@
                             <td><?php echo $fetchUserInfo['role'] ?></td>
                             <td><?php echo $fetchUserInfo['school'] ?></td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#EditUserManageUser" value='<?php echo $fetchUserInfo['id'] ?>' id='editUserManageUser'><i class="fa-solid fa-pen"></i></button>
-                                <button class='btn btn-danger btn-sm' id='deleteUserManageUser' value='<?php echo $fetchUserInfo['id'] ?>' ><i class="fa-solid fa-trash"></i></button>
+                                <button type="button" title="Edit" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#EditUserManageUser" value='<?php echo $fetchUserInfo['id'] ?>' id='editUserManageUser'><i class="fa-solid fa-pen"></i></button>
+                                <button class='btn btn-danger btn-sm' title="Delete" id='deleteUserManageUser' value='<?php echo $fetchUserInfo['id'] ?>' ><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
                     <?php }while($fetchUserInfo = $list->fetch_assoc()) ?>

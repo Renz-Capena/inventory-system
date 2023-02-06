@@ -15,14 +15,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .profile-img{
+        /* .profile-img{
             text-align: center;
-        }
-        .profile-img img{
-            width: 90%;
-            height: 100%;
-        }
-        .profile-img .file {
+        } */
+        /* .profile-img img{
+            width: 20px;
+            height: auto;
+        } */
+        /* .profile-img .file {
             position: relative;
             overflow: hidden;
             margin-top: -20%;
@@ -40,7 +40,7 @@
         }
         .profile-img input{
             cursor: pointer;
-        }
+        } */
         /* .wrapper{
             background-size: cover;
             background-repeat: no-repeat;
@@ -76,16 +76,17 @@
     <!-- <button id='updateUserInfoProfile'>UPDATE</button> -->
 
 
-    <div class="wrapper d-flex align-items-center justify-content-center gap-3 px-3 mt-4 position-relative" style=" padding-block: 80px; background-color: #e2f8fb">
-        <div class="col-md-4">
+    <div class="wrapper d-flex align-items-center flex-column justify-content-center gap-3 px-3 mt-4 position-relative" style=" padding-block: 20px; background-color: #e2f8fb">
+        <!-- <div class="col-md-4"> -->
             <div class="profile-img">
-                <img src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg" alt=""/>
-                <div class="file btn btn-lg btn-primary">
+            <span class=" px-5 pb-1"><i class="fa-solid fa-user fs-1"></i></span>
+            <hr>
+                <!-- <div class="file btn btn-lg btn-primary">
                     Change Photo
                     <input type="file" name="file"/>
-                </div>
+                </div> -->
             </div>
-        </div>
+        <!-- </div> -->
         <!-- <div class="divider"></div> -->
         <div class="card mb-3 w-50">
             <div class="card-body">
