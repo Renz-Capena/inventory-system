@@ -19,21 +19,22 @@
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         
         
-        <div class="d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-3">
             <input id='searchUserDb' class="form-control form-control-sm fs-17 py-2 ps-5" style="background-color: lightgrey" type="text" placeholder='Search User'
             aria-label="Search">
             <div style="position: absolute; top: 8px; left: 15px; z-index: 1;">
                 <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
             </div>
+
+            <select id='selectedRole' class="form-select w-100" style="background-color: lightgrey" aria-label="Default select example">
+                <option value='Default'>Select Role</option>
+                <option value="Admin">Admin</option>
+                <option value="CLient">Client</option>
+            </select>
         </div>
 
         <button type="button" id='addUsersSchoolsModal' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserManageUser"><i class="fa-solid fa-plus pe-2"></i>Add User</button>
 
-        <select id='selectedRole' class="form-select w-25" aria-label="Default select example">
-            <option value='Default'>Select Role</option>
-            <option value="Admin">Admin</option>
-            <option value="CLient">Client</option>
-        </select>
 
     </div>
 

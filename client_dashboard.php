@@ -60,10 +60,10 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li id="profileBtn" value='<?php echo $fetchUserInfo['id'] ?>' ><button class="dropdown-item"  >Profile</button></li>
+                    <li id="profileBtn" value='<?php echo $fetchUserInfo['id'] ?>' ><button class="dropdown-item py-2">My Profile</button></li>
                     <li><a class="dropdown-item" href="#">
                     <form action="" method="post">
-                        <input type="submit" class="btn btn-danger btn-sm mt-2" name="logoutBtn" value="LOGOUT">
+                        <span class="d-flex align-items-center"><i class="fa-solid fa-right-from-bracket text-danger"></i><input type="submit" class="btn btn-sm" name="logoutBtn" value="LOGOUT"></span>
                     </form>
                     </a></li>
                 </ul>
