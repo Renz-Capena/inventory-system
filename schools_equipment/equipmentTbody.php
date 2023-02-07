@@ -1,5 +1,6 @@
 <?php
     require "../db.php";
+    session_start();
 
     $school = $_POST['schoolName'];
 
@@ -39,7 +40,10 @@
                 <td><?php echo $fetch['status'] ?></td>
                 <td style="width: 90px">
                     <button type="button" class="btn btn-primary btn-sm" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'><i class="fa-solid fa-pen"></i></button>
-                    <button class="btn btn-danger btn-sm" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button>
+
+                    <?php if($_SESSION['status'] == 'Admin'){ ?>
+                        <button class="btn btn-danger btn-sm" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button>
+                    <?php } ?>
                 </td>
             </tr>
         <?php }while($fetch = $list->fetch_assoc()) ?>
