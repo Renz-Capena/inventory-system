@@ -68,7 +68,13 @@
 </head>
 <body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay; ">
     <header class="d-flex align-items-center py-2 bg-success text-light" style=" position: absolute; top: 20px; right:40px; padding-inline: 20px;  border-radius: 10px;">
-        <span><i class="fa-solid fa-user fs-4 mt-1"></i></span>
+        <span>
+            <?php if(empty($fetchUserInfo['picture'])){ ?>
+                <i class="fa-solid fa-user fs-4 mt-1"></i>
+            <?php }else{ ?>
+                <img src="<?php echo $fetchUserInfo['picture'] ?>" alt="" style='width:30px;height:30px;border: 3px solid white ;border-radius: 100vmax; margin-right: 7px;'>
+            <?php } ?>
+        </span>
         <div class="dropdown">
             <a id="dropdownBtn" class="text-decoration-none dropdown-toggle ps-1" style="color: #f5f5f5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $fetchUserInfo['email'] ?>
@@ -397,6 +403,28 @@
         </div>
     </div>
 
+    <!-- PROFILE UPLOAD PIC MODAL -->
+    <div class="modal fade" id="uploadProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update profile picture</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <!-- <label for="formFile" class="form-label">Upload profile picture</label> -->
+                    <input type="hidden" value='<?php echo $fetchUserInfo['id'] ?>' id='profilePictureId'>
+                    <input class="form-control" type="file" id="profileUploadedPicture">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='profileUploadBtnDb'>Upload</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -1029,6 +1057,27 @@
                         $("#manageUserTbody").html(e)
                     }
                 })
+            })
+
+            // PROFILE UPLOAD IMG DB
+            $("#profileUploadBtnDb").click(function(){
+                const id = $("#profilePictureId").val();
+                const file = $("#profileUploadedPicture").prop("files")[0];
+
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("id", id);
+                
+                $.ajax({
+                    url: "uploadProfilePic.php",
+                    type: "POST",
+                    data:formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                    console.log("Upload successful!");
+                    }
+                });
             })
 
             // EXPORT TABLE
