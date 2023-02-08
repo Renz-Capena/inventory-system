@@ -19,12 +19,12 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- get school name -->
+    <input type="hidden" value='<?php echo $school ?>' id='schoolNameDor'>
+    <!--  -->
 
     <h3><?php echo $school ?></h3>
     <?php if($list->num_rows){ ?>
-        <!-- get school name -->
-        <input type="hidden" value='<?php echo $school ?>' id='schoolNameDor'>
-        <!--  -->
 
         <?php do{ ?>
 
