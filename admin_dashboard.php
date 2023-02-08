@@ -425,6 +425,30 @@
             </div>
         </div>
     </div>
+
+    <!-- FILES UPLOAD DOR -->
+    <div class="modal fade" id="fileUplaodsDorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Files</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id='dorBodyModal' class="modal-body">
+                <!-- DOR BODY -->
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <input class="form-control form-control-sm w-50" id="inputFileDorPic" type="file">
+                
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id='uploadDorDbButton'>Upload Files</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -802,6 +826,8 @@
                             })
                         }
                     })
+                }else{
+                    confirm('Fill up all fields! If not available type N/A.')
                 }
             })
 
@@ -1070,6 +1096,43 @@
                 
                 $.ajax({
                     url: "uploadProfilePic.php",
+                    type: "POST",
+                    data:formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                    console.log("Upload successful!");
+                    }
+                });
+            })
+
+            // DOR FILE BUTTON MODAL
+            $("#dashBoardBody").on("click","#dorButtonModal",function(){
+                const school = $(this).val();
+
+                $.ajax({
+                    url:"dorPictures.php",
+                    method: "post",
+                    data:{
+                        school:school
+                    },
+                    success(e){
+                        $("#dorBodyModal").html(e);
+                    }
+                })
+            })
+
+            // DOR FILE UPLOAD BUTTON DATABSE
+            $("#uploadDorDbButton").click(function(){
+                const schoolName = $("#schoolNameDor").val();
+                const file = $("#inputFileDorPic").prop("files")[0];
+
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("school", schoolName);
+                
+                $.ajax({
+                    url: "uploadDor.php",
                     type: "POST",
                     data:formData,
                     processData: false,

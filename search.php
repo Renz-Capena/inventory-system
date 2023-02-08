@@ -29,6 +29,9 @@
             <td><?php echo $fetch['contact_no'] ?></td>
             <td><?php echo $fetch['email'] ?></td>
             <td><?php echo $fetch['district'] ?></td>
+            <td>
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#fileUplaodsDorModal" id='dorButtonModal' value='<?php echo $fetch['school_name'] ?>'>Files</button>
+            </td>
             <td style="width: 120px">
                 <button type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editSchool"><i class="fa-solid fa-pen"></i></button>
                 <button class="btn btn-danger btn-sm" id='deleteBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button>
