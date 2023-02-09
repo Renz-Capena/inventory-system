@@ -117,6 +117,10 @@
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-school"></i></span>
                         School
                         </a>
+                        <ul id='levelBtnDashboard' style='display:none'>
+                            <li>High Shcool</li>
+                            <li>Elementary School</li>
+                        </ul>
                     </li>
                     <li id='manageUserBtn'>
                         <a id='navBtn3' href="#" class="nav-link link-light">
@@ -182,29 +186,13 @@
 
     <!-- MODALS ADD SCHOOL -->
     <div class="modal fade" id="addSchool" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add School</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="inputSchoolName" placeholder="School Name">
-                    <label for="floatingInput">School Name</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="inputPrincipal" placeholder="Principal">
-                    <label for="floatingInput">Principal</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="inputAddress" placeholder="Address">
-                    <label for="floatingInput">Address</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="inputContact" placeholder="Contact Number">
-                    <label for="floatingInput">Contact Number</label>
-                </div> -->
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="inputSchoolName" placeholder="School Name">
                     <label for="floatingInput">School Name</label>
@@ -254,7 +242,7 @@
 
     <!-- MODAL EDIT  SCHOOL -->
     <div class="modal fade" id="editSchool" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Edit School</h1>
@@ -495,13 +483,17 @@
             })
 
             // NAV
-            $('#schoolBtn').click(function(){
+            $('#navBtn2').click(function(){
                 $('#dashBoardBody').load("table.php");
 
                 $('#navBtn1').removeClass('active');
                 $('#navBtn2').addClass('active');
                 $('#navBtn3').removeClass('active');
                 $('#navBtn4').removeClass('active');
+
+                // TOGGLE LVL SCHOOL
+                $("#levelBtnDashboard").toggleClass("showLevel");
+
             })
 
             // $('#menuBtn').click(function(){
