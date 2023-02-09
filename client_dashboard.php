@@ -67,11 +67,14 @@
 
                 <ul class="dropdown-menu">
                     <li id="profileBtn" value='<?php echo $fetchUserInfo['id'] ?>' ><button class="dropdown-item py-2">My Profile</button></li>
-                    <li><a class="dropdown-item" href="#">
-                    <form action="" method="post">
-                        <span class="d-flex align-items-center"><i class="fa-solid fa-right-from-bracket text-danger"></i><input type="submit" class="btn btn-sm" name="logoutBtn" value="LOGOUT"></span>
-                    </form>
-                    </a></li>
+                    <li>
+                        <!-- <a class="dropdown-item" href="#">
+                            <form action="" method="post">
+                                <span class="d-flex align-items-center"><i class="fa-solid fa-right-from-bracket text-danger"></i><input type="submit" class="btn btn-sm" name="logoutBtn" value="LOGOUT"></span>
+                            </form>
+                        </a> -->
+                        <button class='btn' data-bs-toggle="modal" data-bs-target="#LogoutModal">Logout</button>
+                    </li>
                 </ul>
             </div>
             </div>
@@ -266,6 +269,27 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='profileUploadBtnDb'>Upload</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- MODAL LOGOUT -->
+    <div class="modal fade" id="LogoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">LOGOUT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to logout?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="" method="post">
+                    <span class="d-flex align-items-center"><i class="fa-solid fa-right-from-bracket text-danger"></i><input type="submit" class="btn btn-sm" name="logoutBtn" value="LOGOUT"></span>
+                </form>
             </div>
             </div>
         </div>
@@ -599,6 +623,7 @@
                                         id : id
                                     },
                                     success(e){
+                                        confirm("Update profile successful!");
                                         $("#dashBoardBody").html(e)
                                     }
                                 })
@@ -667,39 +692,46 @@
                 const formData = new FormData();
                 formData.append("file", file);
                 formData.append("id", id);
+
+                if(file){
+
+                    $.ajax({
+                        url: "uploadProfilePic.php",
+                        type: "POST",
+                        data:formData,
+                        processData: false,
+                        contentType: false,
+                        success: function() {
+
+                            $.ajax({
+                                url:"profile.php",
+                                method:"post",
+                                data:{
+                                    id:id
+                                },
+                                success(e){
+                                    $("#dashBoardBody").html(e)
+                                }
+                            })
+
+                            $.ajax({
+                                url:"profileHeaderUpdate.php",
+                                method:"post",
+                                data:{
+                                    id:id
+                                },
+                                success(e){
+                                    $("#profileIconHeader").html(e)
+                                }
+                            })
+
+                        }
+                    });
+                }else{
+                    confirm('Please Select file!');
+                }
                 
-                $.ajax({
-                    url: "uploadProfilePic.php",
-                    type: "POST",
-                    data:formData,
-                    processData: false,
-                    contentType: false,
-                    success: function() {
-
-                        $.ajax({
-                            url:"profile.php",
-                            method:"post",
-                            data:{
-                                id:id
-                            },
-                            success(e){
-                                $("#dashBoardBody").html(e)
-                            }
-                        })
-
-                        $.ajax({
-                            url:"profileHeaderUpdate.php",
-                            method:"post",
-                            data:{
-                                id:id
-                            },
-                            success(e){
-                                $("#profileIconHeader").html(e)
-                            }
-                        })
-
-                    }
-                });
+                
             })
         })
 
