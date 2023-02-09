@@ -31,3 +31,6 @@ ul{
 .widthChange{
     width: 14%;
 }
+.showLevel{
+    display: block !important;
+}
