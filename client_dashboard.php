@@ -53,7 +53,13 @@
 <body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay;">
 
     <header class="d-flex align-items-center py-2 bg-success text-light" style=" position: absolute; top: 20px; right:40px; padding-inline: 20px;  border-radius: 10px;">
-            <span><i class="fa-solid fa-user fs-4 mt-1"></i></span>
+            <span>
+                <?php if(empty($fetchUserInfo['picture'])){ ?>
+                    <i class="fa-solid fa-user fs-4 mt-1"></i>
+                <?php }else{ ?>
+                    <img src="<?php echo $fetchUserInfo['picture'] ?>" alt="" style='width:30px;height:30px;border: 3px solid white ;border-radius: 100vmax; margin-right: 7px;'>
+                <?php } ?>
+            </span>
             <div class="dropdown">
                 <a id="dropdownBtn" class="text-decoration-none dropdown-toggle ps-1" style="color: #f5f5f5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <?php echo $fetchUserInfo['email'] ?>
@@ -92,6 +98,11 @@
                             <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-computer"></i></span>
                             Equipment List
                             </a>
+                        </li>
+                        <li>
+
+                            <button type="button" class=" btn-sm text-light bg-transparent" style="border: none; padding-right: 130px;" data-bs-toggle="modal" data-bs-target="#fileUplaodsDorModal" id='dorButtonModal' value='<?php echo $fetchUserInfo['school'] ?>'><i class="fa-regular fa-folder-open text-light fs-6 ms-2 me-3"></i>DOR</button>
+                    
                         </li>
                     </ul>
                 </div>
@@ -209,6 +220,52 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='profileUpdateBtnDatabase' data-bs-dismiss="modal">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILES UPLOAD DOR -->
+    <div class="modal fade" id="fileUplaodsDorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Files</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id='dorBodyModal' class="modal-body">
+                <!-- DOR BODY -->
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <input class="form-control form-control-sm w-50" id="inputFileDorPic" type="file">
+                
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='uploadDorDbButton'>Upload Files</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE UPLOAD PIC MODAL -->
+    <div class="modal fade" id="uploadProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update profile picture</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <!-- <label for="formFile" class="form-label">Upload profile picture</label> -->
+                    <input type="hidden" value='<?php echo $fetchUserInfo['id'] ?>' id='profilePictureId'>
+                    <input class="form-control" type="file" id="profileUploadedPicture">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='profileUploadBtnDb'>Upload</button>
             </div>
             </div>
         </div>
@@ -563,6 +620,64 @@
                 if (confirm("Export this table?")) {
                     exportToExcel();
                 }
+            })
+
+            // DOR FILE BUTTON MODAL
+            $("#dorButtonModal").click(function(){
+                const school = $(this).val();
+
+                $.ajax({
+                    url:"dorPictures.php",
+                    method: "post",
+                    data:{
+                        school:school
+                    },
+                    success(e){
+                        $("#dorBodyModal").html(e);
+                    }
+                })
+            })
+
+            // DOR FILE UPLOAD BUTTON DATABSE
+            $("#uploadDorDbButton").click(function(){
+                const schoolName = $("#schoolNameDor").val();
+                const file = $("#inputFileDorPic").prop("files")[0];
+
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("school", schoolName);
+                
+                $.ajax({
+                    url: "uploadDor.php",
+                    type: "POST",
+                    data:formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                    console.log("Upload successful!");
+                    }
+                });
+            })
+
+            // PROFILE UPLOAD BUTTON DB
+            $("#profileUploadBtnDb").click(function(){
+                const id = $("#profilePictureId").val();
+                const file = $("#profileUploadedPicture").prop("files")[0];
+
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("id", id);
+                
+                $.ajax({
+                    url: "uploadProfilePic.php",
+                    type: "POST",
+                    data:formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                    console.log("Upload successful!");
+                    }
+                });
             })
         })
 

@@ -442,7 +442,7 @@
                 
                 <div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id='uploadDorDbButton'>Upload Files</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id='uploadDorDbButton'>Upload Files</button>
                 </div>
             </div>
             </div>

@@ -20,13 +20,13 @@
         
         
         <div class="d-flex align-items-center gap-3">
-            <input id='searchUserDb' class="form-control form-control-sm fs-17 py-2 ps-5" style="background-color: #e7fb57"  type="text" placeholder='Search User'
+            <input id='searchUserDb' class="form-control form-control-sm fs-17 py-2 ps-5" style="border: 2px solid grey; border-radius: 100vmax; width: 350px;"  type="text" placeholder='Search User'
             aria-label="Search">
             <div style="position: absolute; top: 8px; left: 15px; z-index: 1;">
                 <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
             </div>
 
-            <select id='selectedRole' class="form-select w-100" style="background-color: lightgrey" aria-label="Default select example">
+            <select id='selectedRole' class="form-select w-50" style="border: 2px solid grey" aria-label="Default select example">
                 <option value='Default'>Select Role</option>
                 <option value="Admin">Admin</option>
                 <option value="CLient">Client</option>
