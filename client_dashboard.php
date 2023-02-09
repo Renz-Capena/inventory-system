@@ -53,7 +53,7 @@
 <body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay;">
 
     <header class="d-flex align-items-center py-2 bg-success text-light" style=" position: absolute; top: 20px; right:40px; padding-inline: 20px;  border-radius: 10px;">
-            <span>
+            <span id='profileIconHeader'>
                 <?php if(empty($fetchUserInfo['picture'])){ ?>
                     <i class="fa-solid fa-user fs-4 mt-1"></i>
                 <?php }else{ ?>
@@ -674,8 +674,30 @@
                     data:formData,
                     processData: false,
                     contentType: false,
-                    success: function(data) {
-                    console.log("Upload successful!");
+                    success: function() {
+
+                        $.ajax({
+                            url:"profile.php",
+                            method:"post",
+                            data:{
+                                id:id
+                            },
+                            success(e){
+                                $("#dashBoardBody").html(e)
+                            }
+                        })
+
+                        $.ajax({
+                            url:"profileHeaderUpdate.php",
+                            method:"post",
+                            data:{
+                                id:id
+                            },
+                            success(e){
+                                $("#profileIconHeader").html(e)
+                            }
+                        })
+
                     }
                 });
             })
