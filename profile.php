@@ -21,34 +21,38 @@
         }
         .profile-img img{
             width: 300px;
-            height: auto;
-            border: 2px solid red;
+            height: 310px;
+            /* border: 2px solid red; */
             padding: 20px;
         }
-        /* .profile-img .file {
+        .profile-img .file {
             position: relative;
             overflow: hidden;
             margin-top: -20%;
-            width: 80%;
+            width: 90%;
             border: none;
             border-radius: 0;
             font-size: 15px;
             background: #212529b8;
         }
-        .profile-img .file input {
+        .profile-img .file .profile-button {
             position: absolute;
             opacity: 0;
             right: 0;
+            left: 0;
+            margin-inline: auto;
+            width: 100%;
             top: 0;
+            
         }
-        .profile-img input{
+        .profile-img .profile-button{
             cursor: pointer;
         } 
         .wrapper{
             background-size: cover;
             background-repeat: no-repeat;
         }
-        .profile-img::before{
+        /* .profile-img::before{
             content: '';
             width: 380px;
             height: 300px;
@@ -59,7 +63,7 @@
         } */
 
 
-        .profile-container {
+        /* .profile-container {
         position: relative;
         margin-top: -10px;
         width: 380px;
@@ -133,7 +137,7 @@
 
         .profile-container:hover .profile-button {
         opacity: 1;
-        }
+        } */
 
     </style>
 </head>
@@ -159,30 +163,30 @@
 
     <div class="wrapper d-flex align-items-center justify-content-center gap-3 px-3 position-relative" style=" padding-block: 70px; background-color: #e2f8fb">
         
-    <div class="profile-container">
-        <?php if(empty($info['picture'])){ ?>
-            <img src="https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png" alt="" />
-        <?php }else{ ?>
-            <img src="<?php echo $info['picture'] ?>" alt="" />
-        <?php } ?>
+    <!-- <div class="profile-container">
         <p class="profile-title">Change Profile</p>
         <div class="profile-overlay" ></div>
         <div class="profile-button"><button class='btn text-light' data-bs-toggle="modal" data-bs-target="#uploadProfileModal">Upload here</button></div>
-    </div>
+    </div> -->
     
     
-    <!-- <div class="col-md-4">
+    <div class="col-md-4">
             <div class="profile-img">
-                <img src="https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png" alt="">
+                <!-- <img src="https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png" alt=""> -->
+                <?php if(empty($info['picture'])){ ?>
+                    <img src="https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png" alt="" />
+                <?php }else{ ?>
+                    <img src="<?php echo $info['picture'] ?>" alt="" />
+                <?php } ?>
 
-            <span class=" px-5 pb-1"><i class="fa-solid fa-user fs-1"></i></span>
-            <hr>
+            <!-- <span class="px-5 pb-1"><i class="fa-solid fa-user fs-1"></i></span>
+            <hr> -->
                 <div class="file btn btn-lg btn-primary">
                     Change Photo
-                    <input type="file" name="file"/>
+                    <div class="profile-button"><button class='btn text-light w-100' data-bs-toggle="modal" data-bs-target="#uploadProfileModal">Upload here</button></div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- <div class="divider"></div> -->
         <div class="card mb-3 w-50">
             <div class="card-body">

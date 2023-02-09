@@ -20,14 +20,14 @@
     <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Registered School</div>
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         <div class="d-flex align-items-center gap-4">
-            <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" style="background-color: #e7fb57" type="text" placeholder='Search School'
+            <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" style="border: 2px solid grey; border-radius: 100vmax; width: 350px;" type="text" placeholder='Search School'
             aria-label="Search">
             <div style="position: absolute; top: 8px; left: 15px; z-index: 1;">
                 <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
             </div>
 
 
-            <select class="form-select w-auto" style="background-color: lightgrey" aria-label="Default select example" id='selectDisctrictFilter'>
+            <select class="form-select w-50" style="border: 2px solid grey" aria-label="Default select example" id='selectDisctrictFilter'>
                 <option value="Default">Select District</option>
                 <option value="Congressional I">Congressional I</option>
                 <option value="Congressional II">Congressional II</option>
@@ -55,7 +55,7 @@
                     <th>Contact No.</th>
                     <th>Email</th>
                     <th>District</th>
-                    <th>Files</th>
+                    <th>DOR</th>
                     <th colspan='3'>Action</th>
                 </tr>
 
@@ -74,7 +74,7 @@
                             <td><?php echo $fetch['email'] ?></td>
                             <td><?php echo $fetch['district'] ?></td>
                             <td>
-                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#fileUplaodsDorModal" id='dorButtonModal' value='<?php echo $fetch['school_name'] ?>'>Files</button>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#fileUplaodsDorModal" id='dorButtonModal' value='<?php echo $fetch['school_name'] ?>'><i class="fa-regular fa-folder-open text-light"></i></button>
                             </td>
                             <td style="width: 120px">
                                 <button title="edit" type="button" id='editBtn' value='<?php echo $fetch['id'] ?>' class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editSchool"><i class="fa-solid fa-pen"></i></button>
