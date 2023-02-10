@@ -182,7 +182,7 @@
             <!-- <span class="px-5 pb-1"><i class="fa-solid fa-user fs-1"></i></span>
             <hr> -->
                 <div class="file btn btn-lg btn-primary">
-                    Change Photo
+                <i class="fa-solid fa-rotate me-2"></i>Change Photo
                     <div class="profile-button"><button class='btn text-light w-100' data-bs-toggle="modal" data-bs-target="#uploadProfileModal">Upload here</button></div>
                 </div>
             </div>
