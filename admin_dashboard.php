@@ -123,8 +123,8 @@
                         School
                         </a>
                         <ul id='levelBtnDashboard' style='display:none'>
-                            <li>High Shcool</li>
-                            <li>Elementary School</li>
+                            <li><button class='btn btn-primary' value='High School' id='navHighSchoolBtn'>High Shcool</button></li>
+                            <li><button class='btn btn-primary' value='Elementary School' id='navElemSchoolBtn'>Elementary School</button></li>
                         </ul>
                     </li>
                     <li id='manageUserBtn'>
@@ -226,6 +226,11 @@
                 <select class="form-select" aria-label="Default select example" id='inputSchoolType'>
                     <option value="Public">Public</option>
                     <option value="Private">Private</option>
+                </select>
+                <label class='mt-3 mb-2 ps-2'>Grade/Level</label>
+                <select class="form-select" aria-label="Default select example" id='inputSchoolLevel'>
+                    <option value="Elementary School">Elementary School</option>
+                    <option value="High School">High School</option>
                 </select>
                 <label class='mt-3 mb-2 ps-2'>District</label>
                 <select class="form-select" aria-label="Default select example" id='inputDistrict'>
@@ -518,6 +523,7 @@
                 const division = $("#inputDivision").val();
                 const schoolType = $("#inputSchoolType").val();
                 const district = $("#inputDistrict").val();
+                const schoolLevel = $("#inputSchoolLevel").val();
 
 
 
@@ -533,7 +539,8 @@
                             email : email,
                             division : division,
                             schoolType : schoolType,
-                            district : district
+                            district : district,
+                            schoolLevel : schoolLevel
                         },
                         success(){
                             $('#dashBoardBody').load("table.php");
@@ -547,6 +554,7 @@
                             $("#inputDivision").val("");
                             $("#inputSchoolType").val("");
                             $("#inputDistrict").val("");
+                            $("#inputSchoolLevel").val("");
                         }
                     })
                 }else{
@@ -628,6 +636,7 @@
                 const division = $("#inputDivisionEdit").val();
                 const schoolType = $("#inputSchoolTypeEdit").val();
                 const district = $("#inputDistrictEdit").val();
+                const schoolLevel = $("#inputSchoolLevelEdit").val();
 
                 $.ajax({
                     url:"updateSchool.php",
@@ -641,7 +650,8 @@
                         email : email,
                         division : division,
                         schoolType : schoolType,
-                        district : district
+                        district : district,
+                        schoolLevel : schoolLevel
                     },
                     success(){
                         $('#dashBoardBody').load("table.php");
@@ -1201,6 +1211,38 @@
                 if (confirm("Export this table?")) {
                     exportToExcel();
                 }
+            })
+
+            // HIGH SCHOOL BUTTON
+            $("#navHighSchoolBtn").click(function(){
+                const level =  $(this).val();
+
+                $.ajax({
+                    url: "schoolLevelTable.php",
+                    method: "post",
+                    data:{
+                        level : level
+                    },
+                    success(e){
+                        $("#dashBoardBody").html(e)
+                    }
+                })
+            })
+
+            // ELEM SCHOOL BUTTON
+            $("#navElemSchoolBtn").click(function(){
+                const level =  $(this).val();
+
+                $.ajax({
+                    url: "schoolLevelTable.php",
+                    method: "post",
+                    data:{
+                        level : level
+                    },
+                    success(e){
+                        $("#dashBoardBody").html(e)
+                    }
+                })
             })
 
         })

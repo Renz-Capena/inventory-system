@@ -34,6 +34,7 @@
                 <td><?php echo $fetch['contact_no'] ?></td>
                 <td><?php echo $fetch['email'] ?></td>
                 <td><?php echo $fetch['district'] ?></td>
+                <td><?php echo $fetch['level'] ?></td>
                 <td>
                     <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#fileUplaodsDorModal" id='dorButtonModal' value='<?php echo $fetch['school_name'] ?>'><i class="fa-regular fa-folder-open text-light"></i></button>
                 </td>
@@ -46,7 +47,7 @@
         <?php }while($fetch = $list->fetch_assoc()) ?>
     <?php }else{ ?>
         <tr>
-            <td colspan='10'>No data</td>
+            <td colspan='12'>No data</td>
         </tr>
     <?php } ?>
 </body>
