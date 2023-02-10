@@ -65,6 +65,11 @@
     <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/admin_dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body > header > div > ul > li:nth-child(2):hover{
+            background-color: #E9ECEF;
+        }
+    </style>
 </head>
 <body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay; ">
     <header class="d-flex align-items-center py-2 bg-success text-light" style=" position: absolute; top: 20px; right:40px; padding-inline: 20px;  border-radius: 10px;">
@@ -88,7 +93,7 @@
                             <span class="d-flex align-items-center"><i class="fa-solid fa-right-from-bracket text-danger"></i><input type="submit" class="btn btn-sm" name="logoutBtn" value="LOGOUT"></span>
                         </form> -->
                     <!-- </a> -->
-                    <button class='btn' data-bs-toggle="modal" data-bs-target="#LogoutModal">Logout</button>
+                    <a class='btn' data-bs-toggle="modal" data-bs-target="#LogoutModal">Logout</a>
                 </li>
             </ul>
         </div>
@@ -451,10 +456,10 @@
         <div class="modal-body">
             <p>Are you sure to logout?</p>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer d-flex align-items-center gap-3">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <form action="" method="post">
-                <span class="d-flex align-items-center"><i class="fa-solid fa-right-from-bracket text-danger"></i><input type="submit" class="btn btn-sm" name="logoutBtn" value="LOGOUT"></span>
+                <span class="d-flex align-items-center"><i class="fa-solid fa-right-from-bracket text-danger"></i><input type="submit" class="btn btn-sm" name="logoutBtn" value="Logout"></span>
             </form>
         </div>
         </div>
