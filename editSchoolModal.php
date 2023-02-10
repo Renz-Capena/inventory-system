@@ -38,17 +38,27 @@
         <input type="text" value='<?php echo $fetch['email'] ?>' class="form-control" id="inputEmailEdit" placeholder="Email">
         <label for="floatingInput">Email</label>
     </div>
+    
     <label class='mt-2 mb-2 ps-2'>Division</label>
     <select class="form-select" aria-label="Default select example" id='inputDivisionEdit'>
         <option class='bg-primary' value="<?php echo $fetch['division'] ?>"><?php echo $fetch['division'] ?></option>
         <option value="DCS-Valenzuela">DCS-Valenzuela</option>
     </select>
+
     <label class='mt-3 mb-2 ps-2'>School Type</label>
     <select class="form-select" aria-label="Default select example" id='inputSchoolTypeEdit'>
         <option class='bg-primary' value="<?php echo $fetch['school_type'] ?>"><?php echo $fetch['school_type'] ?></option>
         <option value="Public">Public</option>
         <option value="Private">Private</option>
     </select>
+
+    <label class='mt-3 mb-2 ps-2'>Grade/Level</label>
+    <select class="form-select" aria-label="Default select example" id='inputSchoolLevelEdit'>
+        <option class='bg-primary' value="<?php echo $fetch['level'] ?>"><?php echo $fetch['level'] ?></option>
+        <option value="Elementary School">Elementary School</option>
+        <option value="High School">High School</option>
+    </select>
+
     <label class='mt-3 mb-2 ps-2'>District</label>
     <select class="form-select" aria-label="Default select example" id='inputDistrictEdit'>
         <option class='bg-primary' value="<?php echo $fetch['district'] ?>"><?php echo $fetch['district'] ?></option>
