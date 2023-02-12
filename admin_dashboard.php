@@ -1245,6 +1245,41 @@
                 })
             })
 
+            // SEARCH SCHOOL WITH LEVEL FILTER
+            $("#dashBoardBody").on('keyup',"#searchBarLevel",function(){
+                const searchVal = $(this).val();
+                const level = $("#inputLevelValue").val();
+
+                $.ajax({
+                    url:"search.php",
+                    method:"post",
+                    data:{
+                        searchValue : searchVal,
+                        level : level
+                    },
+                    success(e){
+                        $('#idForSearchOutput').html(e);
+                    }
+                })
+            })
+
+            $("#dashBoardBody").on("change","#selectDisctrictFilterLevel",function(){
+                const district = $(this).val();
+                const level = $("#inputLevelValue").val();
+                
+                $.ajax({
+                    url:"district.php",
+                    method:"post",
+                    data:{
+                        district : district,
+                        level : level
+                    },
+                    success(e){
+                        $("#idForSearchOutput").html(e)
+                    }
+                })
+            })
+
         })
 
         function exportToExcel() {

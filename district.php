@@ -3,11 +3,25 @@
 
     $district = $_POST['district'];
 
-    if($district == "Default"){
-        $q = "SELECT * FROM `schools`";
+    if(empty($_POST['level'])){
+
+        if($district == "Default"){
+            $q = "SELECT * FROM `schools` ORDER BY id DESC";
+        }else{
+            $q = "SELECT * FROM `schools` WHERE district='$district' ORDER BY id DESC";
+        }
+
     }else{
-        $q = "SELECT * FROM `schools` WHERE district='$district'";
+        $level = $_POST['level'];
+
+        if($district == "Default"){
+            $q = "SELECT * FROM `schools` WHERE level='$level' ORDER BY id DESC";
+        }else{
+            $q = "SELECT * FROM `schools` WHERE district='$district' AND level='$level' ORDER BY id DESC";
+        }
+
     }
+
 
 
     $list = $con->query($q);
