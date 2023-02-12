@@ -22,14 +22,20 @@
     <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3"><?php echo $level ?></div>
     <div class="d-flex align-items-center justify-content-between mb-3 mt-4 position-relative">
         <div class="d-flex align-items-center gap-4">
-            <input id='searchBar' class="form-control form-control-sm fs-17 py-2 ps-5" style="border: 2px solid grey; border-radius: 100vmax; width: 350px;" type="text" placeholder='Search School'
+
+            <input id='searchBarLevel' class="form-control form-control-sm fs-17 py-2 ps-5" style="border: 2px solid grey; border-radius: 100vmax; width: 350px;" type="text" placeholder='Search School'
             aria-label="Search">
+
+            <!-- INPUT FOR FILTER LEVEL-->
+            <input type="hidden" id='inputLevelValue' value='<?php echo $level ?>'>
+            <!--  -->
+
             <div style="position: absolute; top: 8px; left: 15px; z-index: 1;">
                 <i class="fas fa-search fs-5 text-secondary" aria-hidden="true"></i>
             </div>
 
 
-            <select class="form-select w-50" style="border: 2px solid grey" aria-label="Default select example" id='selectDisctrictFilter'>
+            <select class="form-select w-50" style="border: 2px solid grey" aria-label="Default select example" id='selectDisctrictFilterLevel'>
                 <option value="Default">Select District</option>
                 <option value="Congressional I">Congressional I</option>
                 <option value="Congressional II">Congressional II</option>

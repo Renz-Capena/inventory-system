@@ -3,7 +3,14 @@
 
     $searchValue = $_POST['searchValue'];
 
-    $q = "SELECT * FROM schools WHERE id LIKE '%$searchValue%' OR  school_name LIKE '%$searchValue%' OR school_id LIKE '%$searchValue%' OR division LIKE '%$searchValue%' OR school_type LIKE '%$searchValue%' OR  contact_person LIKE '%$searchValue%' OR  contact_no LIKE '%$searchValue%' OR email LIKE '%$searchValue%' OR  district LIKE '%$searchValue%' OR  level LIKE '%$searchValue%' ORDER BY id DESC";
+    if(empty($_POST['level'])){
+        $q = "SELECT * FROM schools WHERE id LIKE '%$searchValue%' OR  school_name LIKE '%$searchValue%' OR school_id LIKE '%$searchValue%' OR division LIKE '%$searchValue%' OR school_type LIKE '%$searchValue%' OR  contact_person LIKE '%$searchValue%' OR  contact_no LIKE '%$searchValue%' OR email LIKE '%$searchValue%' OR  district LIKE '%$searchValue%' OR  level LIKE '%$searchValue%' ORDER BY id DESC";
+    }else{
+        $level = $_POST['level'];
+
+        $q = "SELECT * FROM schools WHERE level='$level' AND ( id LIKE '%$searchValue%' OR  school_name LIKE '%$searchValue%' OR school_id LIKE '%$searchValue%' OR division LIKE '%$searchValue%' OR school_type LIKE '%$searchValue%' OR  contact_person LIKE '%$searchValue%' OR  contact_no LIKE '%$searchValue%' OR email LIKE '%$searchValue%' OR  district LIKE '%$searchValue%' OR  level LIKE '%$searchValue%' ) ORDER BY id DESC";
+
+    }
 
     $list = $con->query($q);
     $fetch = $list->fetch_assoc();
