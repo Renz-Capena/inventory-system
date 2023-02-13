@@ -40,6 +40,14 @@
     $countSchool = "SELECT * FROM `schools`";
     $listSchool = $con->query($countSchool);
     $schoolCount = $listSchool->num_rows;
+    // Elementary School
+    $countElemSchool = "SELECT * FROM `schools` WHERE level='Elementary School'";
+    $listElemSchool = $con->query($countElemSchool);
+    $elemSchoolCount = $listElemSchool->num_rows;
+    // Elementary School
+    $countHighSchool = "SELECT * FROM `schools` WHERE level='High School'";
+    $listHighSchool = $con->query($countHighSchool);
+    $highSchoolCount = $listHighSchool->num_rows;
 
 
     // date_default_timezone_set('Asia/Manila');
@@ -123,8 +131,8 @@
                         School
                         </a>
                         <ul id='levelBtnDashboard' style='display:none'>
-                            <li><button class='btn btn-primary' value='High School' id='navHighSchoolBtn'>High Shcool</button></li>
-                            <li><button class='btn btn-primary' value='Elementary School' id='navElemSchoolBtn'>Elementary School</button></li>
+                            <li><button class='btn text-secondary' value='High School' id='navHighSchoolBtn'>High Shcool</button></li>
+                            <li><button class='btn text-secondary' value='Elementary School' id='navElemSchoolBtn'>Elementary School</button></li>
                         </ul>
                     </li>
                     <li id='manageUserBtn'>
@@ -152,35 +160,59 @@
         <div id='dashBoardBody' class="mx-auto w-75" style=" margin-top: 100px;">
             <!-- Ilagay dito ang dashboard -->
             <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Dashboard</div>
-            <div class="d-flex py-5 px-5 text-light" style="gap: 70px; background-color: white;">
-                <div class="card w-100" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
-                    <div class="card-body bg-primary rounded-1">
-                        <!-- Title -->
-                        <h4 class="card-title"><i class="fa-solid fa-users-gear me-3"></i><?php echo $adminCount ?> <br> <p class="mt-2">System Admin</p></h4>
-                        <hr>
-                        <!-- Text -->
-                        <p class="card-text">Number of People who have more control to the system.</p>
-                        <!-- <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+            <div class="d-flex flex-column py-5 px-5 text-light" style="gap: 30px; background-color: white;">
+                <div class="d-flex flex-row gap-5">
+                    <div class="card w-100" style=" border: none; max-width: 350px">
+                        <div class="card-body bg-primary" style="border-radius: 20px;">
+                            <!-- Title -->
+                            <h4 class="card-title"><i class="fa-solid fa-users-gear me-3"></i><?php echo $adminCount ?> <br> <p class="mt-2">System Admin</p></h4>
+                            <hr>
+                            <!-- Text -->
+                            <p class="card-text">Number of People who have more control to the system.</p>
+                            <!-- <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+                        </div>
+                    </div>
+                    <div class="card w-100" style="border: none; max-width: 350px">
+                        <div class="card-body bg-success" style="border-radius: 20px;">
+                            <!-- Title -->
+                            <h4 class="card-title"><i class="fa-solid fa-school me-3"></i><?php echo $schoolCount ?> <br> <p class="mt-2">Schools</p></h4>
+                            <hr>
+                            <!-- Text -->
+                            <p class="card-text">Number of registered School.</p>
+                            <!-- <button id="toSchoolList" class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+                        </div>
                     </div>
                 </div>
-                <div class="card w-100" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
-                    <div class="card-body bg-success rounded-1">
-                        <!-- Title -->
-                        <h4 class="card-title"><i class="fa-solid fa-school me-3"></i><?php echo $schoolCount ?> <br> <p class="mt-2">Schools</p></h4>
-                        <hr>
-                        <!-- Text -->
-                        <p class="card-text">Number of registered School.</p>
-                        <!-- <button id="toSchoolList" class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+                <div class="d-flex flex-row gap-5">
+                    <div class="card w-100" style="border: none; max-width: 350px ">
+                        <div class="card-body bg-danger" style="border-radius: 20px;">
+                            <!-- Title -->
+                            <h4 class="card-title"><i class="fa-solid fa-users me-3"></i><?php echo $clientCount ?> <br> <p class="mt-2">Users</p></h4>
+                            <hr>
+                            <!-- Text -->
+                            <p class="card-text">Number of registered users.</p>
+                            <!-- <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+                        </div>
                     </div>
-                </div>
-                <div class="card w-100" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; max-width: 350px">
-                    <div class="card-body bg-danger rounded-1">
-                        <!-- Title -->
-                        <h4 class="card-title"><i class="fa-solid fa-users me-3"></i><?php echo $clientCount ?> <br> <p class="mt-2">Users</p></h4>
-                        <hr>
-                        <!-- Text -->
-                        <p class="card-text">Number of registered users.</p>
-                        <!-- <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+                    <div class="card w-100" style="border: none; max-width: 350px ">
+                        <div class="card-body bg-warning" style="border-radius: 20px;">
+                            <!-- Title -->
+                            <h4 class="card-title"><i class="fa-solid fa-school me-3"></i><?php echo $elemSchoolCount ?> <br> <p class="mt-2">Elementary School</p></h4>
+                            <hr>
+                            <!-- Text -->
+                            <p class="card-text">Number of registered Elementary School.</p>
+                            <!-- <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+                        </div>
+                    </div>
+                    <div class="card w-100 " style="border: none; max-width: 350px ">
+                        <div class="card-body bg-info" style="border-radius: 20px;">
+                            <!-- Title -->
+                            <h4 class="card-title"><i class="fa-solid fa-school-flag me-3"></i><?php echo $highSchoolCount ?> <br> <p class="mt-2">High School</p></h4>
+                            <hr>
+                            <!-- Text -->
+                            <p class="card-text">Number of registered High School.</p>
+                            <!-- <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+                        </div>
                     </div>
                 </div>
             </div>
