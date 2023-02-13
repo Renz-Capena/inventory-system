@@ -504,6 +504,8 @@
                             })
                         }
                     })
+                }else{
+                    confirm(`Please fill up all the fields! or Type N/A if not applicable.`)
                 }
             })
 

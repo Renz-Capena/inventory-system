@@ -81,7 +81,7 @@
                             <td><?php echo $fetch['total_value'] ?></td>
                             <td><?php echo $fetch['source_of_fund'] ?></td>
                             <td><?php echo $fetch['status'] ?></td>
-                            <td style="width: 90px">
+                            <td class="d-flex gap-1">
         
                                 <button type="button" title="Edit" class="btn btn-primary btn-sm" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'><i class="fa-solid fa-pen"></i></button>
                                 <button class="btn btn-danger btn-sm" title="Delete" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button>

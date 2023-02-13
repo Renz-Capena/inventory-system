@@ -44,7 +44,7 @@
     $countElemSchool = "SELECT * FROM `schools` WHERE level='Elementary School'";
     $listElemSchool = $con->query($countElemSchool);
     $elemSchoolCount = $listElemSchool->num_rows;
-    // Elementary School
+    // High School
     $countHighSchool = "SELECT * FROM `schools` WHERE level='High School'";
     $listHighSchool = $con->query($countHighSchool);
     $highSchoolCount = $listHighSchool->num_rows;
@@ -73,10 +73,18 @@
     <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/admin_dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Prata&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body > header > div > ul > li:nth-child(2):hover{
             background-color: #E9ECEF;
         }
+        *{
+            font-family: 'Montserrat', sans-serif;
+            /* font-family: 'Prata', serif;
+            font-family: 'Rubik', sans-serif; */
+                    }
     </style>
 </head>
 <body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay; ">
@@ -101,7 +109,7 @@
                             <span class="d-flex align-items-center"><i class="fa-solid fa-right-from-bracket text-danger"></i><input type="submit" class="btn btn-sm" name="logoutBtn" value="LOGOUT"></span>
                         </form> -->
                     <!-- </a> -->
-                    <a class='btn' data-bs-toggle="modal" data-bs-target="#LogoutModal">Logout</a>
+                    <a class='btn ms-1' data-bs-toggle="modal" data-bs-target="#LogoutModal">Logout</a>
                 </li>
             </ul>
         </div>
@@ -130,9 +138,9 @@
                         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-school"></i></span>
                         School
                         </a>
-                        <ul id='levelBtnDashboard' style='display:none'>
-                            <li><button class='btn text-secondary' value='High School' id='navHighSchoolBtn'>High Shcool</button></li>
-                            <li><button class='btn text-secondary' value='Elementary School' id='navElemSchoolBtn'>Elementary School</button></li>
+                        <ul id='levelBtnDashboard' style='display:none; padding-left: 13px;'>
+                            <li><button class='ms-n4 bg-dark text-light' value='High School' style="border:none;" id='navHighSchoolBtn'><i class="fa-solid fa-minus text-secondary me-2"></i>High School</button></li>
+                            <li><button class='bg-dark text-light' value='Elementary School' style="border:none;" id='navElemSchoolBtn'><i class="fa-solid fa-minus text-secondary me-2"></i>Elementary School</button></li>
                         </ul>
                     </li>
                     <li id='manageUserBtn'>
@@ -162,8 +170,8 @@
             <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Dashboard</div>
             <div class="d-flex flex-column py-5 px-5 text-light" style="gap: 30px; background-color: white;">
                 <div class="d-flex flex-row gap-5">
-                    <div class="card w-100" style=" border: none; max-width: 350px">
-                        <div class="card-body bg-primary" style="border-radius: 20px;">
+                    <div class="card w-100" style=" border: none; max-width: 310px">
+                        <div class="card-body bg-dark" style="border-radius: 20px;">
                             <!-- Title -->
                             <h4 class="card-title"><i class="fa-solid fa-users-gear me-3"></i><?php echo $adminCount ?> <br> <p class="mt-2">System Admin</p></h4>
                             <hr>
@@ -172,7 +180,7 @@
                             <!-- <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
                         </div>
                     </div>
-                    <div class="card w-100" style="border: none; max-width: 350px">
+                    <div class="card w-100" style="border: none; max-width: 310px">
                         <div class="card-body bg-success" style="border-radius: 20px;">
                             <!-- Title -->
                             <h4 class="card-title"><i class="fa-solid fa-school me-3"></i><?php echo $schoolCount ?> <br> <p class="mt-2">Schools</p></h4>
@@ -205,7 +213,7 @@
                         </div>
                     </div>
                     <div class="card w-100 " style="border: none; max-width: 350px ">
-                        <div class="card-body bg-info" style="border-radius: 20px;">
+                        <div class="card-body bg-primary" style="border-radius: 20px;">
                             <!-- Title -->
                             <h4 class="card-title"><i class="fa-solid fa-school-flag me-3"></i><?php echo $highSchoolCount ?> <br> <p class="mt-2">High School</p></h4>
                             <hr>
@@ -670,7 +678,8 @@
                 const district = $("#inputDistrictEdit").val();
                 const schoolLevel = $("#inputSchoolLevelEdit").val();
 
-                $.ajax({
+                if(schoolName && schoolID && contactPerson && contactNo && email && division && schoolType && district && schoolLevel){
+                    $.ajax({
                     url:"updateSchool.php",
                     method:"post",
                     data:{
@@ -689,7 +698,11 @@
                         $('#dashBoardBody').load("table.php");
         
                     }
-                })
+                    })
+                }else{
+                    confirm('Please fill up all fields!')
+                }
+ 
             })
 
             // VIEW EQUIPMENT
