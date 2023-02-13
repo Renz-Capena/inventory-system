@@ -38,7 +38,7 @@
                 <td><?php echo $fetch['total_value'] ?></td>
                 <td><?php echo $fetch['source_of_fund'] ?></td>
                 <td><?php echo $fetch['status'] ?></td>
-                <td style="width: 90px">
+                <td class="d-flex gap-1">
                     <button type="button" class="btn btn-primary btn-sm" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'><i class="fa-solid fa-pen"></i></button>
 
                     <?php if($_SESSION['status'] == 'Admin'){ ?>
