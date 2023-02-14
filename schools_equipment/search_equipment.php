@@ -6,7 +6,7 @@
     $search = $_POST['searchValue'];
 
     
-    $q = "SELECT * FROM equipment WHERE school = '$schoolName' AND ( id LIKE '%$search%' OR code LIKE '%$search%' OR article LIKE '%$search%' OR description LIKE '%$search%' OR date_acquired LIKE '%$search%' OR unit_value LIKE '%$search%' OR total_value LIKE '%$search%' OR source_of_fund LIKE '%$search%' OR status LIKE '%$search%')";
+    $q = "SELECT * FROM equipment WHERE school = '$schoolName' AND permission='Approve' AND ( id LIKE '%$search%' OR code LIKE '%$search%' OR article LIKE '%$search%' OR description LIKE '%$search%' OR date_acquired LIKE '%$search%' OR unit_value LIKE '%$search%' OR total_value LIKE '%$search%' OR source_of_fund LIKE '%$search%' OR status LIKE '%$search%')";
 
     // $q = "SELECT * FROM equipment WHERE school = '$schoolName' AND ( id LIKE '%$search%' OR code LIKE '%$search%')";
 

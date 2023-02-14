@@ -3,7 +3,7 @@
 
     $school = $_POST['schoolName'];
         
-    $q = "SELECT * FROM `equipment` WHERE school='$school'";
+    $q = "SELECT * FROM `equipment` WHERE school='$school' AND permission='Approve' ";
 
     $list = $con->query($q);
 

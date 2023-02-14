@@ -50,15 +50,10 @@
     $highSchoolCount = $listHighSchool->num_rows;
 
 
-    // date_default_timezone_set('Asia/Manila');
-    // $todays_date = date("y-m-d h:i:sa");
-    // $today = strtotime($todays_date);
-    // echo "<br>";echo "<br>";
-    // echo "Current time ";
-    // echo "<br>";
-
-
-    // echo date("Y-m-d h:i:sa", $today);
+    // GET NUMBER OF REQUEST
+    $getRequest = "SELECT * FROM `equipment` WHERE permission='Deny'";
+    $listRequest = $con->query($getRequest);
+    $requestCount = $listRequest->num_rows;
 
 
 ?>
@@ -127,35 +122,41 @@
                     <!-- lagyan mo id at tawagin mo addevent para lumabas or hindi ang navbar -->
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
-                    <li>
-                        <a id="navBtn1" class="nav-link link-light active" href="javascript:window.location.reload(true)">
-                        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-chart-simple"></i></span>
-                        Dashboard
-                        </a>
-                    </li>
-                    <li id='schoolBtn'>
-                        <a id="navBtn2" href="#" class="nav-link link-light">
-                        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-school"></i></span>
-                        School
-                        </a>
-                        <ul id='levelBtnDashboard' style='display:none; padding-left: 13px;'>
-                            <li><button class='ms-n4 bg-dark text-light' value='High School' style="border:none;" id='navHighSchoolBtn'><i class="fa-solid fa-minus text-secondary me-2"></i>High School</button></li>
-                            <li><button class='bg-dark text-light' value='Elementary School' style="border:none;" id='navElemSchoolBtn'><i class="fa-solid fa-minus text-secondary me-2"></i>Elementary School</button></li>
-                        </ul>
-                    </li>
-                    <li id='manageUserBtn'>
-                        <a id='navBtn3' href="#" class="nav-link link-light">
-                        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-users"></i></span>
-                        Manage Users
-                        </a>
-                    </li>
-                    <!-- <li id='contactBtnNav'>
-                        <a id='navBtn4' href="#" class="nav-link link-light">
-                        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-phone"></i></span>
-                        Contact
-                        </a>
-                    </li> -->
-                    <!-- <?php echo date ('d-m-y h:i:s'); ?> -->
+                        <li>
+                            <a id="navBtn1" class="nav-link link-light active" href="javascript:window.location.reload(true)">
+                                <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-chart-simple"></i></span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li id='schoolBtn'>
+                            <a id="navBtn2" href="#" class="nav-link link-light">
+                                <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-school"></i></span>
+                                School
+                            </a>
+                            <ul id='levelBtnDashboard' style='display:none; padding-left: 13px;'>
+                                <li><button class='ms-n4 bg-dark text-light' value='High School' style="border:none;" id='navHighSchoolBtn'><i class="fa-solid fa-minus text-secondary me-2"></i>High School</button></li>
+                                <li><button class='bg-dark text-light' value='Elementary School' style="border:none;" id='navElemSchoolBtn'><i class="fa-solid fa-minus text-secondary me-2"></i>Elementary School</button></li>
+                            </ul>
+                        </li>
+                        <li id='manageUserBtn'>
+                            <a id='navBtn3' href="#" class="nav-link link-light">
+                                <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-users"></i></span>
+                                Manage Users
+                            </a>
+                        </li>
+                        <li id='requestBtn'>
+                            <a id='navBtn4' href="#" class="nav-link link-light">
+                                <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-code-pull-request"></i></i></span>
+                                Request Approval 
+                                
+                                <span id='requestCountNav'>
+                                    <?php if($requestCount){ ?>
+                                        <span style='background-color:gray;color:black;padding:5px'><?php echo $requestCount  ?></span>
+                                    <?php } ?>
+                                </span>
+
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- <ul>
@@ -1321,6 +1322,30 @@
                     },
                     success(e){
                         $("#idForSearchOutput").html(e)
+                    }
+                })
+            })
+
+            $("#requestBtn").click(function(){
+                $("#dashBoardBody").load("requestTable.php")
+            })
+
+            $("#dashBoardBody").on('click',"#approveBtn",function(){
+                const id = $(this).val()
+
+                $.ajax({
+                    url:"approveEquipment.php",
+                    method:"post",
+                    data:{
+                        id : id
+                    },
+                    success(e){
+
+                        $("#dashBoardBody").load("requestTable.php")
+                        // $("#dashBoardBody").html(e)
+
+                        $("#requestCountNav").html(e)
+
                     }
                 })
             })
