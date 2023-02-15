@@ -6,10 +6,7 @@
     $search = $_POST['searchValue'];
 
     
-    $q = "SELECT * FROM equipment WHERE school = '$schoolName' AND permission='Approve' AND ( id LIKE '%$search%' OR code LIKE '%$search%' OR article LIKE '%$search%' OR description LIKE '%$search%' OR date_acquired LIKE '%$search%' OR unit_value LIKE '%$search%' OR total_value LIKE '%$search%' OR source_of_fund LIKE '%$search%' OR status LIKE '%$search%')";
-
-    // $q = "SELECT * FROM equipment WHERE school = '$schoolName' AND ( id LIKE '%$search%' OR code LIKE '%$search%')";
-
+    $q = "SELECT * FROM equipment WHERE school = '$schoolName' AND ( id LIKE '%$search%' OR code LIKE '%$search%' OR article LIKE '%$search%' OR description LIKE '%$search%' OR date_acquired LIKE '%$search%' OR unit_value LIKE '%$search%' OR total_value LIKE '%$search%' OR source_of_fund LIKE '%$search%' OR status LIKE '%$search%') ORDER BY id DESC";
 
     $list = $con->query($q);
 
@@ -31,24 +28,41 @@
     
     <?php if($list->num_rows){ ?>
         <?php do{ ?>
-            <tr>
-                <td><?php echo $fetch['id'] ?></td>
-                <td><?php echo $fetch['code'] ?></td>
-                <td><?php echo $fetch['article'] ?></td>
-                <td><?php echo $fetch['description'] ?></td>
-                <td><?php echo $fetch['date_acquired'] ?></td>
-                <td><?php echo $fetch['unit_value'] ?></td>
-                <td><?php echo $fetch['total_value'] ?></td>
-                <td><?php echo $fetch['source_of_fund'] ?></td>
-                <td><?php echo $fetch['status'] ?></td>
-                <td class="d-flex gap-1">
-                    <button type="button" class="btn btn-primary btn-sm" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'><i class="fa-solid fa-pen"></i></button>
+            <?php if($fetch['permission'] == "Approve"){ ?>
+                <tr>
+                    <td><?php echo $fetch['id'] ?></td>
+                    <td><?php echo $fetch['code'] ?></td>
+                    <td><?php echo $fetch['article'] ?></td>
+                    <td><?php echo $fetch['description'] ?></td>
+                    <td><?php echo $fetch['date_acquired'] ?></td>
+                    <td><?php echo $fetch['unit_value'] ?></td>
+                    <td><?php echo $fetch['total_value'] ?></td>
+                    <td><?php echo $fetch['source_of_fund'] ?></td>
+                    <td><?php echo $fetch['status'] ?></td>
+                    <td>
 
-                    <?php if($_SESSION['status'] == 'Admin'){ ?>
-                        <button class="btn btn-danger btn-sm" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button>
-                    <?php } ?>
-                </td>
-            </tr>
+                        <button type="button" title="Edit" class="btn btn-primary btn-sm" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn'><i class="fa-solid fa-pen"></i></button>
+                        <!-- <button class="btn btn-danger btn-sm" title="Delete" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button> -->
+                    </td>
+                </tr>
+            <?php }else{ ?>
+                <tr style="opacity: 0.3; background-color: lightgrey;cursor: not-allowed;" title='Need approval'>
+                    <td><?php echo $fetch['id'] ?></td>
+                    <td><?php echo $fetch['code'] ?></td>
+                    <td><?php echo $fetch['article'] ?></td>
+                    <td><?php echo $fetch['description'] ?></td>
+                    <td><?php echo $fetch['date_acquired'] ?></td>
+                    <td><?php echo $fetch['unit_value'] ?></td>
+                    <td><?php echo $fetch['total_value'] ?></td>
+                    <td><?php echo $fetch['source_of_fund'] ?></td>
+                    <td><?php echo $fetch['status'] ?></td>
+                    <td>
+
+                        <button type="button" title="Edit" class="btn btn-primary btn-sm" value='<?php echo $fetch['id'] ?>' data-bs-toggle="modal" data-bs-target="#editEquipmentModal" id='editEquipmentBtn' disabled><i class="fa-solid fa-pen"></i></button>
+                        <!-- <button class="btn btn-danger btn-sm" title="Delete" id='deleteEquipmentBtn' value='<?php echo $fetch['id'] ?>'><i class="fa-solid fa-trash"></i></button> -->
+                    </td>
+                </tr>
+            <?php } ?>
         <?php }while($fetch = $list->fetch_assoc()) ?>
     <?php }else{ ?>
         <tr>
