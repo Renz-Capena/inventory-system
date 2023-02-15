@@ -339,7 +339,7 @@
 
                 if(code && article && description && date && unitValue && totalValue && sourceOfFunds){
                     $.ajax({
-                        url:"schools_equipment/add_equipment.php",
+                        url:"schools_equipment/add_equipment_client.php",
                         method:'post',
                         data:{
                             schoolName : schoolName,
@@ -466,7 +466,7 @@
 
                 if(code && article && description && date && unitValue && totalValue && sourceOfFunds){
                     $.ajax({
-                        url:"schools_equipment/update_equipment.php",
+                        url:"schools_equipment/update_equipment_client_db.php",
                         method:'post',
                         data:{
                             id:id,
