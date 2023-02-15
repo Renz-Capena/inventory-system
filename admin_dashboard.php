@@ -1326,10 +1326,12 @@
                 })
             })
 
+            //GET ALL REQUEST TO APPROVE
             $("#requestBtn").click(function(){
                 $("#dashBoardBody").load("requestTable.php")
             })
 
+            // APPROVE REQUEST BUTTON
             $("#dashBoardBody").on('click',"#approveBtn",function(){
                 const id = $(this).val()
 
@@ -1346,6 +1348,25 @@
 
                         $("#requestCountNav").html(e)
 
+                    }
+                })
+            })
+
+            // DELETE REQUEST BUTTON
+            $("#dashBoardBody").on("click","#deleteRequestBtn",function(){
+                const id = $(this).val();
+
+                $.ajax({
+                    url:"deleteRequest.php",
+                    method:"post",
+                    data:{
+                        id : id
+                    },
+                    success(e){
+                        
+                        $("#dashBoardBody").load("requestTable.php")
+
+                        $("#requestCountNav").html(e)
                     }
                 })
             })
