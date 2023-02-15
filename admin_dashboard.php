@@ -146,7 +146,7 @@
                         </li>
                         <li id='requestBtn'>
                             <a id='navBtn4' href="#" class="nav-link link-light">
-                                <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-code-pull-request"></i></i></span>
+                                <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-calendar-minus"></i></span>
                                 Request Approval 
                                 
                                 <span id='requestCountNav'>
@@ -546,6 +546,18 @@
                 $("#levelBtnDashboard").toggleClass("showLevel");
 
             })
+            $('#navHighSchoolBtn').click(function(){
+
+                $('#navBtn1').removeClass('active');
+                $('#navBtn2').removeClass('active');
+                $('#navBtn3').removeClass('active');
+                $('#navBtn4').removeClass('active');
+                $('#navElemSchoolBtn').removeClass('active');
+                $('#navHighSchoolBtn').addClass('active');
+
+            })
+
+            
 
             // $('#menuBtn').click(function(){
                 
@@ -1327,6 +1339,12 @@
             })
 
             $("#requestBtn").click(function(){
+
+                $('#navBtn1').removeClass('active');
+                $('#navBtn2').removeClass('active');
+                $('#navBtn3').removeClass('active');
+                $('#navBtn4').addClass('active');
+
                 $("#dashBoardBody").load("requestTable.php")
             })
 
