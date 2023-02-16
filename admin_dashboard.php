@@ -79,7 +79,10 @@
             font-family: 'Montserrat', sans-serif;
             /* font-family: 'Prata', serif;
             font-family: 'Rubik', sans-serif; */
-                    }
+            }
+        html{
+            font-size: 15px;
+        }
     </style>
 </head>
 <body style="background: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg) no-repeat; background-size: cover; background-color: #e5e5e5; background-blend-mode: overlay; ">
@@ -146,7 +149,7 @@
                         </li>
                         <li id='requestBtn'>
                             <a id='navBtn4' href="#" class="nav-link link-light">
-                                <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-calendar-minus"></i></span>
+                                <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-calendar-plus"></i></span>
                                 Request Approval 
                                 
                                 <span id='requestCountNav'>
@@ -169,7 +172,7 @@
         <div id='dashBoardBody' class="mx-auto w-75" style=" margin-top: 100px;">
             <!-- Ilagay dito ang dashboard -->
             <div class=" text-secondary fw-bold p-2 ps-0 mb-3 w-25 h3">Dashboard</div>
-            <div class="d-flex flex-column py-5 px-5 text-light" style="gap: 30px; background-color: white;">
+            <div class="d-flex flex-column py-5 px-5 text-light" style="gap: 30px; background-color: white; height: 65vh; overflow-y: scroll;">
                 <div class="d-flex flex-row gap-5">
                     <div class="card w-100" style=" border: none; max-width: 310px">
                         <div class="card-body bg-dark" style="border-radius: 20px;">
@@ -221,6 +224,28 @@
                             <!-- Text -->
                             <p class="card-text">Number of registered High School.</p>
                             <!-- <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row gap-5">
+                    <div class="card w-100" style=" border: none; max-width: 310px">
+                        <div class="card-body" style="border-radius: 20px; background-color: #87194C">
+                            <!-- Title -->
+                            <h4 class="card-title"><i class="fa-solid fa-bullhorn me-3"></i><?php echo $adminCount ?> <br> <p class="mt-2">Announcement</p></h4>
+                            <hr>
+                            <!-- Text -->
+                            <p class="card-text">Number of Announcement.</p>
+                            <!-- <button class="btn btn-rounded text-light px-4 btn-md toManageUser" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
+                        </div>
+                    </div>
+                    <div class="card w-100" style="border: none; max-width: 310px">
+                        <div class="card-body" style="border-radius: 20px; background-color: #35DCCC;">
+                            <!-- Title -->
+                            <h4 class="card-title"><i class="fa-solid fa-calendar-plus me-3"></i><?php echo $schoolCount ?> <br> <p class="mt-2">Request</p></h4>
+                            <hr>
+                            <!-- Text -->
+                            <p class="card-text">Number of request that need to approve.</p>
+                            <!-- <button id="toSchoolList" class="btn btn-rounded text-light px-4 btn-md" style="background-color: rgba(0, 0, 0, 0.3);">See more<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button> -->
                         </div>
                     </div>
                 </div>
