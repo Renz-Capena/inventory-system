@@ -52,7 +52,7 @@
                             <td><?php echo $fetch['total_value'] ?></td>
                             <td><?php echo $fetch['source_of_fund'] ?></td>
                             <td><?php echo $fetch['status'] ?></td>
-                            <td class="d-flex gap-1">
+                            <td class="d-flex gap-1 justify-content-center">
                                 <button class='btn btn-info' value='<?php echo $fetch['id'] ?>' id='approveBtn'>APPROVE</button>
                                 <button class='btn btn-info' value='<?php echo $fetch['id'] ?>' id='deleteRequestBtn'>DELETE</button>
                             </td>

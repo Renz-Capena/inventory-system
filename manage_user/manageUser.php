@@ -59,7 +59,7 @@
                             <td><?php echo $fetchUserInfo['pass'] ?></td>
                             <td><?php echo $fetchUserInfo['role'] ?></td>
                             <td><?php echo $fetchUserInfo['school'] ?></td>
-                            <td class="d-flex gap-1">
+                            <td class="d-flex gap-1 justify-content-center">
                                 <button type="button" title="Edit" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#EditUserManageUser" value='<?php echo $fetchUserInfo['id'] ?>' id='editUserManageUser'><i class="fa-solid fa-pen"></i></button>
                                 <button class='btn btn-danger btn-sm' title="Delete" id='deleteUserManageUser' value='<?php echo $fetchUserInfo['id'] ?>' ><i class="fa-solid fa-trash"></i></button>
                             </td>
